@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaCrown, FaHeart, FaUtensils, FaSmileBeam } from 'react-icons/fa';
 import useMahalData from '../../hooks/useMahalData';
 
