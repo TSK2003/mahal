@@ -25,36 +25,35 @@ const iconMap = {
 };
 
 const FacilityCard = ({ facility, index = 0 }) => {
-  const IconComponent = iconMap[facility.icon] || FaSnowflake;
+  const IconComponent = (facility?.icon && iconMap[facility.icon]) || FaSnowflake;
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
       whileHover={{ y: -6, scale: 1.02 }}
-      className="glass-card rounded-2xl p-6 relative overflow-hidden group transition-all duration-300 border border-[#C9A227]/20 hover:border-[#C9A227] hover:shadow-[0_8px_30px_rgba(201,162,39,0.25)]"
+      className="glass-card rounded-2xl p-6 flex flex-col justify-between border border-stone-200 hover:border-[#B8860B] transition-all duration-300 shadow-md hover:shadow-xl bg-white"
     >
-      {/* Background Subtle Gradient Glow */}
-      <div className="absolute top-0 right-0 w-24 h-24 bg-[#C9A227]/5 rounded-full blur-2xl group-hover:bg-[#C9A227]/15 transition-all" />
-
-      <div className="flex items-start gap-4">
-        <div className="w-13 h-13 rounded-xl bg-stone-900 border border-[#C9A227]/40 text-[#C9A227] flex items-center justify-center text-2xl flex-shrink-0 group-hover:bg-[#C9A227] group-hover:text-stone-950 transition-all duration-300 shadow-md">
+      <div>
+        <div className="w-12 h-12 rounded-xl bg-amber-50 border border-[#B8860B]/40 text-[#8B6508] flex items-center justify-center text-2xl mb-4 shadow-sm">
           <IconComponent />
         </div>
+        <span className="text-[10px] uppercase font-bold text-[#8B6508] tracking-wider block mb-1">
+          {facility.category}
+        </span>
+        <h3 className="text-lg font-serif font-bold text-stone-900 mb-2">
+          {facility.title}
+        </h3>
+        <p className="text-xs text-stone-600 leading-relaxed">
+          {facility.desc}
+        </p>
+      </div>
 
-        <div>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#C9A227]">
-            {facility.category}
-          </span>
-          <h3 className="text-lg font-serif font-bold text-stone-100 group-hover:text-[#C9A227] transition-colors mt-0.5 mb-1.5">
-            {facility.name}
-          </h3>
-          <p className="text-xs leading-relaxed text-stone-400">
-            {facility.desc}
-          </p>
-        </div>
+      <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-[11px] text-[#B8860B] font-semibold">
+        <span>Included in Package</span>
+        <span>✓ 5-Star Grade</span>
       </div>
     </motion.div>
   );

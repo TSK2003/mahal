@@ -26,7 +26,7 @@ const Layout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0D0C0B] text-stone-100 flex flex-col justify-between selection:bg-[#C9A227] selection:text-stone-950">
+    <div className="min-h-screen bg-[#FAF8F5] text-stone-900 flex flex-col justify-between selection:bg-[#B8860B] selection:text-white">
       <Navbar onOpenEnquiry={() => handleOpenEnquiry('')} />
 
       <main className={`flex-grow ${location.pathname === '/' ? '' : 'pt-20'}`}>

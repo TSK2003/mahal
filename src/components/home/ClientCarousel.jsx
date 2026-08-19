@@ -6,7 +6,7 @@ import { ESTEEMED_CLIENTS } from '../../data/mahalData';
 
 const ClientCarousel = () => {
   return (
-    <section className="py-16 bg-stone-950/80 border-y border-stone-800 relative overflow-hidden">
+    <section className="py-16 bg-white border-y border-stone-200 relative overflow-hidden shadow-xs">
       <div className="max-w-7xl mx-auto px-4">
         <SectionTitle
           subtitle="Corporate Partners & Patrons"
@@ -34,13 +34,13 @@ const ClientCarousel = () => {
           >
             {ESTEEMED_CLIENTS.map((client, idx) => (
               <SwiperSlide key={idx}>
-                <div className="glass-card rounded-xl p-4 flex items-center justify-center gap-3 border border-stone-800 hover:border-[#C9A227]/40 grayscale hover:grayscale-0 transition-all duration-300">
+                <div className="glass-card rounded-xl p-4 flex items-center justify-center gap-3 border border-stone-200 hover:border-[#B8860B] grayscale hover:grayscale-0 transition-all duration-300 bg-[#FAF8F5]">
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="w-8 h-8 object-contain"
+                    className="w-8 h-8 object-contain rounded-md"
                   />
-                  <span className="text-xs font-semibold text-stone-300 font-serif">
+                  <span className="text-xs font-semibold text-stone-800 font-serif">
                     {client.name}
                   </span>
                 </div>

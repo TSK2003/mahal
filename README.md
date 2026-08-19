@@ -1,32 +1,32 @@
-# 👑 Murugu Wedding Mahal & Luxury Convention Center
+# 👑 Grand Mahal & Luxury Convention Center
 
 > **Where Royal Traditions Meet Timeless Luxury**  
-> A full-featured, responsive, 100% workable **Royal Wedding Mahal & Convention Center Web Application** with an integrated **Interactive Admin Management Portal**, dynamic CMS, live date availability checker, wedding cost calculator, self-service booking status checker, printable tax invoices/receipts, and **Firebase** integration.
+> A full-featured, responsive, 100% workable **Royal Wedding Mahal & Convention Center Web Application** designed with an opulent **Milky White & Royal Gold theme**, integrated **Interactive Admin Management Portal**, dynamic CMS, live date availability checker, custom wedding cost calculator, self-service booking status checker, printable tax invoices/receipts, and **Firebase** CI/CD deployment.
 
 ---
 
 ## 🌟 Key Highlights & Features
 
 ### 🏛️ 1. Public Royal Wedding Website
-- **Royal Aesthetics & Luxury Design**: Tailored South Indian temple and palace architecture with gold gradients (`#DFBA51`, `#C9A227`), deep obsidian dark backgrounds, and luxury serif typography (`Playfair Display`).
+- **Milky White & Royal Gold Palace Aesthetic**: Tailored South Indian temple and palace architecture with pure milky white backgrounds (`#FAF8F5`), ivory cream card surfaces, gold borders and gradients (`#D4AF37`, `#B8860B`, `#8B6508`), and luxury serif typography (`Playfair Display`).
 - **Interactive Date Availability Checker**: Public widget allowing prospective families to select an auspicious muhurtham date and instantly check availability for **Morning (5 AM - 2 PM)**, **Evening (3 PM - 11 PM)**, or **24-Hour Full Day** slots.
-- **Custom Wedding Cost Calculator**: Interactive pricing tool on the Packages page to customize hall duration, guest suites, dining sessions, and floral decor tiers with instant price computation.
+- **Custom Wedding Cost Calculator**: Interactive pricing tool on the Packages page (`/price`) to customize hall duration, guest suites, dining sessions, and floral decor tiers with instant price computation.
 - **Self-Service Booking Status Checker (`/check-booking`)**: Clients can enter their 6-digit Booking ID (e.g. `BK-8901`) or Mobile Number to check confirmation status and download/print their official confirmation slip.
-- **360° Virtual Tour & Video Highlights**: Integrated virtual walkthrough and cinematic drone/event video player.
+- **360° Virtual Tour & Video Highlights**: Integrated virtual walkthrough and cinematic event video player.
 - **High-Definition Mahal Photo Gallery**: Filterable photo gallery categorized by Mandap, Main AC Hall, Dining Hall, Bridal Suites, Exterior Illumination, and Stage Lighting.
 - **Direct WhatsApp & Phone Integration**: Instant pre-filled WhatsApp enquiry routing with full reservation details.
 
 ---
 
 ### 🛡️ 2. Admin Management Portal (`/admin`)
-- **1-Click Demo Admin Login**: Accessible from the Navbar badge or Footer link with instant 1-click evaluation access (or credentials: `admin@murugumahal.com` / `admin123` / PIN `1234`).
+- **1-Click Demo Admin Login**: Accessible from the Navbar badge or Footer link with instant 1-click evaluation access (or credentials: `admin@grandmahal.com` / `admin123` / PIN `1234`).
 - **Executive Dashboard**: Live KPI metrics for Total Bookings, Confirmed Events, Pending Enquiries, Total Revenue (₹), Advance Collections, and Upcoming Events schedule.
 - **Full Bookings Lifecycle CRUD (`/admin/bookings`)**:
   - Search by customer name, phone, or Reference ID.
   - Filter by status (Confirmed, Pending, Completed, Cancelled) and event type.
   - **Add New Manual Booking** with instant date and slot validation.
   - **Edit Booking** (update dates, guest count, advance paid, balance due, notes).
-  - **Printable Booking Slip / Tax Invoice Generator**: Formatted printable receipt with Mahal emblem, customer details, financial breakdown, and terms.
+  - **Printable Booking Slip / Tax Invoice Generator**: Formatted printable receipt with Grand Mahal emblem, customer details, financial breakdown, and terms.
   - **Export to CSV**: 1-click download of all bookings data in CSV format.
 - **Interactive Visual Event Calendar (`/admin/calendar`)**:
   - Monthly calendar with color-coded badges for confirmed and pending slots.
@@ -48,7 +48,7 @@
 ## 🛠️ Technology Stack
 
 - **Frontend**: React 19, React Router DOM v7, Vite 8
-- **Styling**: Tailwind CSS v4, Vanilla CSS Custom Design System
+- **Styling**: Tailwind CSS v4, Vanilla CSS Custom Design System (Milky White & Gold Tokens)
 - **Animations & Interactions**: Framer Motion, Swiper (Carousels & Sliders)
 - **Icons**: React Icons (FontAwesome 6, Game Icons, Material Design)
 - **Backend & Cloud Integration**: Firebase v11 (App, Firestore, Analytics) + LocalStorage Reactive Synchronization Layer
@@ -78,15 +78,13 @@ npm run build
 ## 🔐 Demo Admin Access Credentials
 
 You can click the **"⚡ 1-Click Quick Demo Login"** button on the Navbar, or use the following credentials:
-- **Email**: `admin@murugumahal.com`
+- **Email**: `admin@grandmahal.com`
 - **Password**: `admin123`
 - **Quick PIN**: `1234`
 
 ---
 
 ## 📦 Git Setup & Push Commands
-
-To initialize git and push this repository to GitHub:
 
 ```bash
 git init
@@ -100,19 +98,6 @@ git push -u origin main
 ---
 
 ## 🔥 Firebase Configuration & Deployment
-
-### Firebase Web App Config
-```javascript
-const firebaseConfig = {
-  apiKey: "AIzaSyAg_D7FdStVr0Qs5zMRp1wrq2_OFdvvTVw",
-  authDomain: "mahal-a8800.firebaseapp.com",
-  projectId: "mahal-a8800",
-  storageBucket: "mahal-a8800.firebasestorage.app",
-  messagingSenderId: "647859700729",
-  appId: "1:647859700729:web:b606f69341b6a0f14ab328",
-  measurementId: "G-55GZNZ812H"
-};
-```
 
 ### Deploy to Firebase Hosting
 ```bash
@@ -136,94 +121,16 @@ Go to your GitHub Repository -> **Settings** -> **Secrets and variables** -> **A
 
 Whenever you push to the `main` branch:
 1. GitHub Actions checks out the code
-2. Installs dependencies (`npm ci`)
+2. Installs dependencies (`npm install`)
 3. Builds the production bundle (`npm run build`)
 4. Automatically deploys to Firebase Hosting live at **https://mahal-a8800.web.app**
 
 ```bash
-# Commit & Push your CI/CD workflows to GitHub:
 git add .
-git commit -m "feat: add Firebase CI/CD GitHub Actions workflows"
+git commit -m "feat: Grand Mahal Milky White theme and auto-deploy"
 git push origin main
 ```
 
 ---
 
-## 📁 Project Directory Architecture
-
-```
-wedding_mahal/
-├── public/
-│   ├── favicon.svg
-│   └── icons.svg
-├── src/
-│   ├── assets/
-│   ├── components/
-│   │   ├── common/
-│   │   │   ├── AdminLoginModal.jsx     # Luxury Demo Admin Login Modal
-│   │   │   ├── Button.jsx              # Reusable Button System
-│   │   │   ├── EnquiryModal.jsx        # Public Booking Enquiry Modal
-│   │   │   ├── EventCard.jsx           # Event Showcase Card
-│   │   │   ├── FacilityCard.jsx        # Amenity Card with Icons
-│   │   │   ├── FloatingButtons.jsx     # Sticky WhatsApp, Call & 360 Tour
-│   │   │   ├── GoogleMap.jsx           # Dark Styled Interactive Map
-│   │   │   ├── LightboxModal.jsx       # Photo Zoom Lightbox
-│   │   │   ├── PricingCard.jsx         # Package Tariff Card
-│   │   │   ├── SectionTitle.jsx        # Section Heading Component
-│   │   │   └── VideoModal.jsx          # Video Playback Modal
-│   │   ├── home/
-│   │   │   ├── AvailabilityChecker.jsx # Live Date Availability Widget
-│   │   │   ├── ClientCarousel.jsx      # Corporate Patrons Carousel
-│   │   │   ├── ContactPreview.jsx      # Location & Directions Preview
-│   │   │   ├── EnquiryCTA.jsx          # Booking CTA Banner
-│   │   │   ├── FacilitiesSection.jsx   # Grid of Venue Facilities
-│   │   │   ├── FeaturedEvents.jsx      # Wedding, Reception & Parties
-│   │   │   ├── GalleryPreview.jsx      # Photo Showcase Preview
-│   │   │   ├── Hero.jsx                # Full-screen Hero Video Stream
-│   │   │   ├── MahalDescription.jsx    # Heritage & Value Pillars
-│   │   │   ├── OverviewSection.jsx     # Why Choose Mahal & Experience
-│   │   │   ├── QuickInfoBar.jsx        # Capacity & Stats Ticker
-│   │   │   ├── TestimonialsSection.jsx # Client Reviews Carousel
-│   │   │   └── VideoPreview.jsx        # Event Videos Preview
-│   │   └── layout/
-│   │       ├── Footer.jsx              # Navigation, Contact & Admin link
-│   │       ├── Layout.jsx              # Public Website Shell
-│   │       └── Navbar.jsx              # Brand Header & Demo Admin Button
-│   ├── data/
-│   │   └── mahalData.js                # Master Default Datasets & Bookings
-│   ├── firebase/
-│   │   └── config.js                   # Firebase SDK Initialization
-│   ├── hooks/
-│   │   └── useMahalData.js             # Reactive State Subscription Hook
-│   ├── pages/
-│   │   ├── admin/
-│   │   │   ├── AdminBookings.jsx       # Complete Bookings CRUD & Invoicing
-│   │   │   ├── AdminCalendar.jsx       # Visual Hall Availability Calendar
-│   │   │   ├── AdminContentManager.jsx # Full Website CMS Editor
-│   │   │   ├── AdminDashboard.jsx      # Metrics, KPIs & Trends
-│   │   │   ├── AdminGalleryManager.jsx # Photo Gallery Manager
-│   │   │   ├── AdminLayout.jsx         # Luxury Admin Portal Shell
-│   │   │   ├── AdminSettings.jsx       # Backup & Reset Controls
-│   │   │   └── AdminVideosManager.jsx  # Video Showcase Manager
-│   │   ├── AboutPage.jsx               # Heritage, Founder Story & Timeline
-│   │   ├── BookingStatusPage.jsx       # Public Status & Receipt Lookup
-│   │   ├── ConferencePage.jsx          # Corporate Events & AV Specs
-│   │   ├── ContactPage.jsx             # Contact Desk & Enquiry Form
-│   │   ├── GalleryPage.jsx             # Categorized Photo Gallery
-│   │   ├── HomePage.jsx                # Landing Page
-│   │   ├── PricePage.jsx               # Packages & Cost Calculator
-│   │   └── VideosPage.jsx              # Full Event Video Highlights
-│   ├── services/
-│   │   └── dataService.js              # Realtime State & Storage Engine
-│   ├── App.jsx                         # Main Routing Architecture
-│   ├── index.css                       # Design System & Custom Classes
-│   └── main.jsx                        # React Entrypoint
-├── .firebaserc                         # Firebase Project Mapping
-├── firebase.json                       # Firebase Hosting Configuration
-├── package.json
-└── vite.config.js
-```
-
----
-
-© 2026 Murugu Wedding Mahal & Luxury Convention Center. All Rights Reserved.
+© 2026 Grand Mahal & Luxury Convention Center. All Rights Reserved.

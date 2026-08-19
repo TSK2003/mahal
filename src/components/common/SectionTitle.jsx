@@ -1,36 +1,37 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const SectionTitle = ({ subtitle, title, description, center = true, light = false }) => {
+const SectionTitle = ({ subtitle, title, description, align = 'center', className = '' }) => {
+  const alignmentClass = align === 'left' ? 'text-left' : align === 'right' ? 'text-right' : 'text-center';
+
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 25 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className={`mb-12 ${center ? 'text-center' : 'text-left'}`}
+      className={`mb-12 ${alignmentClass} ${className}`}
     >
       {subtitle && (
-        <span className="inline-block text-xs uppercase tracking-[0.25em] font-semibold text-[#C9A227] mb-2 px-3 py-1 bg-[#C9A227]/10 border border-[#C9A227]/30 rounded-full">
+        <span className="inline-block text-xs uppercase tracking-[0.25em] text-[#8B6508] font-bold mb-2 px-3.5 py-1 rounded-full bg-amber-100/70 border border-[#B8860B]/30 shadow-xs">
           {subtitle}
         </span>
       )}
       {title && (
-        <h2 className={`text-3xl md:text-5xl font-bold font-serif ${light ? 'text-stone-900' : 'text-stone-100'} mt-1 mb-4 leading-tight`}>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-stone-900 mt-2 mb-4 leading-tight">
           {title}
         </h2>
       )}
-      {/* Decorative Gold Flourish Line */}
-      <div className={`flex items-center gap-3 ${center ? 'justify-center' : 'justify-start'} my-3`}>
-        <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#C9A227]" />
-        <div className="w-2 h-2 rotate-45 bg-[#C9A227] shadow-[0_0_8px_#C9A227]" />
-        <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#C9A227]" />
-      </div>
       {description && (
-        <p className={`max-w-2xl text-sm md:text-base ${light ? 'text-stone-600' : 'text-stone-400'} mt-3 ${center ? 'mx-auto' : ''}`}>
+        <p className="max-w-2xl mx-auto text-sm sm:text-base text-stone-600 leading-relaxed">
           {description}
         </p>
       )}
+      <div className={`mt-4 flex items-center justify-${align === 'left' ? 'start' : align === 'right' ? 'end' : 'center'} gap-2`}>
+        <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-[#B8860B]" />
+        <div className="w-2.5 h-2.5 rotate-45 bg-[#B8860B]" />
+        <div className="w-12 h-0.5 bg-gradient-to-l from-transparent to-[#B8860B]" />
+      </div>
     </motion.div>
   );
 };

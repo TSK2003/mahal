@@ -40,35 +40,35 @@ const Navbar = ({ onOpenEnquiry }) => {
     setMobileMenuOpen(false);
   }, [location]);
 
-  const rawName = info?.name || 'Murugu Wedding Mahal';
+  const rawName = info?.name || 'Grand Mahal';
 
   return (
     <>
       <header
         className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'glass-nav py-3 shadow-[0_4px_30px_rgba(0,0,0,0.8)]'
-            : 'bg-stone-950/80 backdrop-blur-md border-b border-stone-800/80 py-3.5'
+            ? 'glass-nav py-3'
+            : 'bg-white/90 backdrop-blur-md border-b border-[#B8860B]/20 py-3.5 shadow-sm'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo - Left */}
           <NavLink to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#DFBA51] via-[#C9A227] to-[#997A15] flex items-center justify-center text-stone-950 text-xl font-bold shadow-[0_0_15px_rgba(201,162,39,0.5)] group-hover:scale-105 transition-transform flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D4AF37] via-[#B8860B] to-[#8B6508] flex items-center justify-center text-white text-xl font-bold shadow-[0_4px_15px_rgba(184,134,11,0.35)] group-hover:scale-105 transition-transform flex-shrink-0">
               <FaCrown />
             </div>
             <div className="flex flex-col text-left">
-              <span className="font-serif text-base sm:text-lg font-extrabold tracking-wide text-stone-100 group-hover:text-[#C9A227] transition-colors leading-none">
+              <span className="font-serif text-lg sm:text-xl font-extrabold tracking-wide text-stone-900 group-hover:text-[#B8860B] transition-colors leading-none">
                 {rawName.toUpperCase()}
               </span>
-              <span className="text-[9px] uppercase tracking-[0.22em] text-[#C9A227] font-semibold mt-1">
+              <span className="text-[9px] uppercase tracking-[0.22em] text-[#B8860B] font-bold mt-1">
                 Luxury Wedding & Convention
               </span>
             </div>
           </NavLink>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1 bg-stone-950/70 p-1.5 rounded-full border border-stone-800/80 backdrop-blur-md">
+          <nav className="hidden xl:flex items-center gap-1 bg-stone-100/90 p-1.5 rounded-full border border-stone-200 shadow-inner">
             {NAV_ITEMS.map((item) => {
               return (
                 <NavLink
@@ -77,8 +77,8 @@ const Navbar = ({ onOpenEnquiry }) => {
                   className={({ isActive }) =>
                     `relative px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-all duration-300 ${
                       isActive
-                        ? 'text-stone-950 font-bold bg-gradient-to-r from-[#DFBA51] to-[#C9A227] shadow-md'
-                        : 'text-stone-300 hover:text-white hover:bg-stone-800/60'
+                        ? 'text-white font-bold bg-gradient-to-r from-[#D4AF37] to-[#B8860B] shadow-md'
+                        : 'text-stone-700 hover:text-[#B8860B] hover:bg-white'
                     }`
                   }
                 >
@@ -94,7 +94,7 @@ const Navbar = ({ onOpenEnquiry }) => {
             {isAdmin ? (
               <NavLink
                 to="/admin"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 hover:bg-emerald-500 hover:text-stone-950 text-xs font-bold transition-all shadow-md"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-700 hover:bg-emerald-600 hover:text-white text-xs font-bold transition-all shadow-sm"
               >
                 <FaUserShield className="text-sm" />
                 <span>Admin Portal</span>
@@ -103,7 +103,7 @@ const Navbar = ({ onOpenEnquiry }) => {
               <button
                 type="button"
                 onClick={() => setIsAdminLoginModalOpen(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#C9A227]/15 border border-[#C9A227]/40 text-[#C9A227] hover:bg-[#C9A227] hover:text-stone-950 text-xs font-bold transition-all cursor-pointer shadow-md"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 border border-[#B8860B]/35 text-[#8B6508] hover:bg-[#B8860B] hover:text-white text-xs font-bold transition-all cursor-pointer shadow-sm"
               >
                 <FaUserShield className="text-sm" />
                 <span>Admin Demo</span>
@@ -114,7 +114,7 @@ const Navbar = ({ onOpenEnquiry }) => {
               variant="primary"
               onClick={onOpenEnquiry}
               icon={FaCalendarCheck}
-              className="text-xs px-4 py-2 font-bold shadow-lg"
+              className="text-xs px-4 py-2 font-bold shadow-md"
             >
               Enquire
             </Button>
@@ -125,7 +125,7 @@ const Navbar = ({ onOpenEnquiry }) => {
             {isAdmin ? (
               <NavLink
                 to="/admin"
-                className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/40"
+                className="p-2 rounded-xl bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-300"
               >
                 Admin
               </NavLink>
@@ -133,7 +133,7 @@ const Navbar = ({ onOpenEnquiry }) => {
               <button
                 type="button"
                 onClick={() => setIsAdminLoginModalOpen(true)}
-                className="px-2.5 py-1.5 rounded-xl bg-[#C9A227]/20 text-[#C9A227] text-xs font-bold border border-[#C9A227]/40"
+                className="px-2.5 py-1.5 rounded-xl bg-amber-100 text-[#8B6508] text-xs font-bold border border-[#B8860B]/40"
               >
                 Admin
               </button>
@@ -149,7 +149,7 @@ const Navbar = ({ onOpenEnquiry }) => {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-stone-200 hover:text-[#C9A227] bg-stone-900 border border-stone-800 rounded-xl transition-colors cursor-pointer"
+              className="p-2 text-stone-700 hover:text-[#B8860B] bg-white border border-stone-200 rounded-xl transition-colors cursor-pointer shadow-sm"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <FaTimes className="text-lg" /> : <FaBars className="text-lg" />}
@@ -165,7 +165,7 @@ const Navbar = ({ onOpenEnquiry }) => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden bg-stone-950/95 border-b border-[#C9A227]/30 backdrop-blur-xl overflow-hidden"
+              className="lg:hidden bg-white/98 border-b border-[#B8860B]/30 backdrop-blur-xl shadow-xl overflow-hidden"
             >
               <div className="px-6 py-6 space-y-2.5 text-left">
                 {NAV_ITEMS.map((item) => {
@@ -176,8 +176,8 @@ const Navbar = ({ onOpenEnquiry }) => {
                       to={item.path}
                       className={`block px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wider transition-all ${
                         isActive
-                          ? 'bg-[#C9A227] text-stone-950 font-bold shadow-md'
-                          : 'text-stone-300 hover:bg-stone-900 hover:text-[#C9A227]'
+                          ? 'bg-[#B8860B] text-white font-bold shadow-md'
+                          : 'text-stone-700 hover:bg-stone-100 hover:text-[#B8860B]'
                       }`}
                     >
                       {item.name}
@@ -185,11 +185,11 @@ const Navbar = ({ onOpenEnquiry }) => {
                   );
                 })}
 
-                <div className="pt-4 border-t border-stone-800 space-y-2.5">
+                <div className="pt-4 border-t border-stone-200 space-y-2.5">
                   {isAdmin ? (
                     <NavLink
                       to="/admin"
-                      className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-emerald-500 text-stone-950 font-bold text-xs shadow-md"
+                      className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs shadow-md"
                     >
                       <FaUserShield /> Go to Admin Portal
                     </NavLink>
@@ -200,7 +200,7 @@ const Navbar = ({ onOpenEnquiry }) => {
                         setMobileMenuOpen(false);
                         setIsAdminLoginModalOpen(true);
                       }}
-                      className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-stone-900 border border-[#C9A227]/40 text-[#C9A227] font-bold text-xs"
+                      className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-amber-50 border border-[#B8860B]/40 text-[#8B6508] font-bold text-xs"
                     >
                       <FaUserShield /> Open Admin Demo Login
                     </button>

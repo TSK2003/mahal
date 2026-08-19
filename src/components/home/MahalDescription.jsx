@@ -14,17 +14,17 @@ const MahalDescription = () => {
   ];
 
   return (
-    <section className="py-20 bg-stone-950/60 border-y border-stone-800/80 relative overflow-hidden">
+    <section className="py-20 bg-white border-y border-stone-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <span className="text-xs uppercase tracking-[0.25em] text-[#C9A227] font-semibold">
+          <span className="text-xs uppercase tracking-[0.25em] text-[#8B6508] font-bold px-3.5 py-1 rounded-full bg-amber-50 border border-[#B8860B]/30">
             Sacred Heritage & Hospitality
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold font-serif text-stone-100 mt-2 mb-4 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-bold font-serif text-stone-900 mt-3 mb-4 leading-tight">
             Where Every Ritual Holds Royal Dignity
           </h2>
-          <p className="text-sm text-stone-400 leading-relaxed">
-            At {info.name}, we understand that a marriage ceremony is a sacred union of two families. Our architecture is meticulously planned so that elders, couple, and thousands of guests enjoy effortless comfort throughout the auspicious occasion.
+          <p className="text-sm text-stone-600 leading-relaxed">
+            At {info?.name || 'Grand Mahal'}, we understand that a marriage ceremony is a sacred union of two families. Our architecture is meticulously planned so that elders, couple, and thousands of guests enjoy effortless comfort throughout the auspicious occasion.
           </p>
         </div>
 
@@ -38,15 +38,15 @@ const MahalDescription = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-card rounded-2xl p-6 border border-stone-800 hover:border-[#C9A227]/50 transition-all duration-300 shadow-xl"
+                className="glass-card rounded-2xl p-6 border border-stone-200 hover:border-[#B8860B] transition-all duration-300 shadow-md bg-[#FAF8F5]"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#DFBA51] to-[#997A15] text-stone-950 flex items-center justify-center text-xl font-bold mb-4 shadow-md">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#8B6508] text-white flex items-center justify-center text-xl font-bold mb-4 shadow-md">
                   <Icon />
                 </div>
-                <h3 className="text-lg font-serif font-bold text-stone-100 mb-2">
+                <h3 className="text-lg font-serif font-bold text-stone-900 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-xs text-stone-400 leading-relaxed">
+                <p className="text-xs text-stone-600 leading-relaxed">
                   {item.desc}
                 </p>
               </motion.div>

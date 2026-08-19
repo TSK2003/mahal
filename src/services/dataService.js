@@ -11,15 +11,15 @@ import {
 } from '../data/mahalData';
 
 const STORAGE_KEYS = {
-  INFO: 'mahal_info_v2',
-  FACILITIES: 'mahal_facilities_v2',
-  EVENTS: 'mahal_events_v2',
-  GALLERY: 'mahal_gallery_v2',
-  VIDEOS: 'mahal_videos_v2',
-  PACKAGES: 'mahal_packages_v2',
-  TESTIMONIALS: 'mahal_testimonials_v2',
-  FAQS: 'mahal_faqs_v2',
-  BOOKINGS: 'mahal_bookings_v2'
+  INFO: 'grand_mahal_info_v3',
+  FACILITIES: 'grand_mahal_facilities_v3',
+  EVENTS: 'grand_mahal_events_v3',
+  GALLERY: 'grand_mahal_gallery_v3',
+  VIDEOS: 'grand_mahal_videos_v3',
+  PACKAGES: 'grand_mahal_packages_v3',
+  TESTIMONIALS: 'grand_mahal_testimonials_v3',
+  FAQS: 'grand_mahal_faqs_v3',
+  BOOKINGS: 'grand_mahal_bookings_v3'
 };
 
 // Event listener for cross-component reactivity
@@ -277,7 +277,7 @@ export const dataService = {
 
   exportBackupJson: () => {
     const backup = {
-      version: "1.0",
+      version: "2.0",
       exportedAt: new Date().toISOString(),
       info: getStorageItem(STORAGE_KEYS.INFO, DEFAULT_MAHAL_INFO),
       facilities: getStorageItem(STORAGE_KEYS.FACILITIES, DEFAULT_FACILITIES),

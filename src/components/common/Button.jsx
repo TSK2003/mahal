@@ -1,33 +1,37 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Button = ({ 
-  children, 
-  variant = 'primary', 
-  onClick, 
-  type = 'button',
+const Button = ({
+  children,
+  variant = 'primary',
+  onClick,
   className = '',
-  icon: Icon
+  type = 'button',
+  icon: Icon,
+  disabled = false,
+  ...props
 }) => {
-  const baseStyle = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 shadow-md cursor-pointer disabled:opacity-50";
+  const baseStyles = 'relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-sans font-semibold text-sm tracking-wider uppercase transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
 
   const variants = {
-    primary: "bg-gradient-to-r from-[#DFBA51] via-[#C9A227] to-[#997A15] text-stone-950 font-semibold shadow-[0_4px_20px_rgba(201,162,39,0.35)] hover:shadow-[0_6px_25px_rgba(201,162,39,0.5)] hover:brightness-110 border border-[#FFF5C3]/40",
-    secondary: "bg-stone-900/80 hover:bg-stone-800 text-stone-100 border border-[#C9A227]/40 hover:border-[#C9A227] hover:text-[#C9A227] backdrop-blur-md",
-    outline: "bg-transparent text-[#C9A227] border border-[#C9A227] hover:bg-[#C9A227] hover:text-stone-950",
-    dark: "bg-stone-950 text-stone-200 border border-stone-800 hover:border-stone-700 hover:text-white"
+    primary: 'bg-gradient-to-r from-[#D4AF37] via-[#B8860B] to-[#8B6508] text-white shadow-[0_4px_15px_rgba(184,134,11,0.35)] hover:shadow-[0_6px_25px_rgba(184,134,11,0.5)] hover:scale-[1.02] active:scale-[0.98]',
+    secondary: 'bg-white border-2 border-[#B8860B] text-[#8B6508] hover:bg-[#B8860B] hover:text-white shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98]',
+    outline: 'border border-stone-300 text-stone-700 hover:border-[#B8860B] hover:text-[#B8860B] bg-white hover:bg-amber-50/50 shadow-xs',
+    gold: 'bg-[#B8860B] text-white hover:bg-[#8B6508] shadow-md hover:shadow-lg',
+    danger: 'bg-rose-600 text-white hover:bg-rose-700 shadow-md'
   };
 
   return (
     <motion.button
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.97 }}
       type={type}
       onClick={onClick}
-      className={`${baseStyle} ${variants[variant] || variants.primary} ${className}`}
+      disabled={disabled}
+      whileTap={{ scale: disabled ? 1 : 0.98 }}
+      className={`${baseStyles} ${variants[variant] || variants.primary} ${className}`}
+      {...props}
     >
-      {children}
-      {Icon && <Icon className="text-base" />}
+      {Icon && <Icon className="text-base flex-shrink-0" />}
+      <span>{children}</span>
     </motion.button>
   );
 };

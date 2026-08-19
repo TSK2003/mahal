@@ -26,17 +26,17 @@ const GalleryPage = () => {
 
       {/* Category Filter Bar */}
       <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
-        <span className="text-xs uppercase text-stone-400 font-semibold flex items-center gap-1.5 mr-2">
-          <FaFilter className="text-[#C9A227]" /> Filter:
+        <span className="text-xs uppercase text-stone-500 font-bold flex items-center gap-1.5 mr-2">
+          <FaFilter className="text-[#B8860B]" /> Filter:
         </span>
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
+            className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
               selectedCategory === cat
-                ? 'bg-gradient-to-r from-[#DFBA51] to-[#997A15] text-stone-950 font-bold shadow-md scale-105'
-                : 'bg-stone-900 text-stone-300 border border-stone-800 hover:border-[#C9A227]/40 hover:text-white'
+                ? 'bg-gradient-to-r from-[#D4AF37] to-[#8B6508] text-white font-bold shadow-md scale-105'
+                : 'bg-white text-stone-700 border border-stone-200 hover:border-[#B8860B] hover:text-[#8B6508] shadow-xs'
             }`}
           >
             {cat}
@@ -57,7 +57,7 @@ const GalleryPage = () => {
               transition={{ duration: 0.3 }}
               whileHover={{ y: -6 }}
               onClick={() => setLightboxIndex(idx)}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden glass-card border border-stone-800 hover:border-[#C9A227] cursor-pointer shadow-lg"
+              className="group relative aspect-[4/3] rounded-2xl overflow-hidden glass-card border border-stone-200 hover:border-[#B8860B] cursor-pointer shadow-md hover:shadow-xl bg-white"
             >
               <img
                 src={img.image}
@@ -66,13 +66,13 @@ const GalleryPage = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
-                <span className="text-[10px] uppercase font-semibold text-[#C9A227] tracking-wider">
+                <span className="text-[10px] uppercase font-bold text-amber-300 tracking-wider">
                   {img.category}
                 </span>
-                <h4 className="text-stone-100 font-serif font-bold text-sm">
+                <h4 className="text-white font-serif font-bold text-sm">
                   {img.title}
                 </h4>
-                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-stone-900/80 border border-[#C9A227] text-[#C9A227] flex items-center justify-center text-xs">
+                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white text-[#8B6508] flex items-center justify-center text-xs shadow-md">
                   <FaExpand />
                 </div>
               </div>

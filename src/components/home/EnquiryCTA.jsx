@@ -9,15 +9,15 @@ const EnquiryCTA = ({ onOpenEnquiry }) => {
 
   return (
     <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden my-12">
-      {/* Background Parallax Banner */}
+      {/* Background Parallax Banner with Soft White Overlay */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=2000&q=80"
-          alt="Royal Wedding Venue"
+          alt="Grand Wedding Venue"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-stone-950/85 backdrop-blur-xs" />
-        <div className="absolute inset-0 bg-gradient-to-r from-stone-950 via-stone-950/90 to-stone-950/70" />
+        <div className="absolute inset-0 bg-stone-900/70 backdrop-blur-xs" />
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-900/80 to-stone-900/60" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
@@ -25,7 +25,7 @@ const EnquiryCTA = ({ onOpenEnquiry }) => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-block text-xs uppercase tracking-[0.25em] text-[#C9A227] font-semibold px-4 py-1.5 rounded-full bg-[#C9A227]/10 border border-[#C9A227]/30"
+          className="inline-block text-xs uppercase tracking-[0.25em] text-amber-200 font-bold px-4 py-1.5 rounded-full bg-white/10 border border-white/30 backdrop-blur-md"
         >
           Check Date Availability & Lock Your Muhurtham
         </motion.span>
@@ -35,9 +35,9 @@ const EnquiryCTA = ({ onOpenEnquiry }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-3xl sm:text-5xl font-extrabold font-serif text-stone-100 leading-tight"
+          className="text-3xl sm:text-5xl font-extrabold font-serif text-white leading-tight"
         >
-          Book Your Dream Event at {info.name}
+          Book Your Dream Event at {info?.name || 'Grand Mahal'}
         </motion.h2>
 
         <motion.p
@@ -45,7 +45,7 @@ const EnquiryCTA = ({ onOpenEnquiry }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-sm sm:text-base text-stone-300 max-w-2xl mx-auto leading-relaxed"
+          className="text-sm sm:text-base text-stone-200 max-w-2xl mx-auto leading-relaxed"
         >
           Prime wedding dates for 2026 are filling up fast. Get in touch with our event reservation desk for instant date confirmation, custom catering options, and floor walk-throughs.
         </motion.p>
@@ -67,11 +67,11 @@ const EnquiryCTA = ({ onOpenEnquiry }) => {
           </Button>
 
           <a
-            href={`tel:${info.phone}`}
-            className="flex items-center gap-3 px-6 py-3.5 rounded-full bg-stone-900 border border-[#C9A227] text-stone-100 hover:text-[#C9A227] transition-all font-semibold text-sm shadow-xl"
+            href={`tel:${info?.phone || '+919840123456'}`}
+            className="flex items-center gap-3 px-6 py-3.5 rounded-full bg-white text-stone-900 border-2 border-[#B8860B] hover:bg-[#B8860B] hover:text-white transition-all font-bold text-sm shadow-xl"
           >
-            <FaPhoneAlt className="text-[#C9A227]" />
-            <span>Call Desk: {info.phone}</span>
+            <FaPhoneAlt className="text-[#B8860B]" />
+            <span>Call Desk: {info?.phone || '+91 98401 23456'}</span>
           </a>
         </motion.div>
       </div>

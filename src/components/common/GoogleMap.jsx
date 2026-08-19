@@ -1,56 +1,42 @@
 import React from 'react';
-import { FaDirections, FaMapMarkerAlt } from 'react-icons/fa';
-import { MAHAL_INFO } from '../../data/mahalData';
+import { FaMapMarkerAlt, FaDirections } from 'react-icons/fa';
+import useMahalData from '../../hooks/useMahalData';
 
-// Modular dark map themes for easy future updates
-export const MAP_THEMES = {
-  dark: "grayscale(100%) invert(92%) contrast(135%) hue-rotate(180deg) brightness(88%)",
-  midnight: "grayscale(100%) invert(95%) contrast(150%) brightness(80%)",
-  goldDark: "grayscale(80%) invert(90%) contrast(130%) sepia(20%) hue-rotate(170deg) brightness(90%)",
-  standard: "none"
-};
-
-const GoogleMap = ({ theme = 'dark', className = '' }) => {
-  const filterStyle = MAP_THEMES[theme] || MAP_THEMES.dark;
+const GoogleMap = ({ theme = 'light', className = '' }) => {
+  const { info } = useMahalData();
+  const mapsUrl = info?.googleMapsUrl || 'https://maps.google.com';
 
   return (
-    <div className={`glass-card rounded-3xl overflow-hidden border border-stone-800/80 shadow-2xl relative flex flex-col justify-between ${className}`}>
-      {/* Map Header Overlay */}
-      <div className="p-4 px-6 bg-stone-900/90 border-b border-stone-800/80 text-left flex items-center justify-between z-10 backdrop-blur-md">
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-[#C9A227]/15 border border-[#C9A227]/40 text-[#C9A227] flex items-center justify-center text-xs">
-            <FaMapMarkerAlt />
-          </div>
-          <div>
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#C9A227]">
-              Google Maps Location (Dark Theme)
-            </span>
-            <h4 className="text-xs sm:text-sm font-serif font-bold text-stone-100">
-              Murugu Mahal
-            </h4>
-          </div>
+    <div className={`relative w-full h-[400px] rounded-3xl overflow-hidden shadow-xl border border-stone-200 ${className}`}>
+      {/* Embedded Google Map Iframe */}
+      <iframe
+        title="Grand Mahal Location"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124419.04351322055!2d80.06892548842774!3d12.965768800000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f77864f1d43%3A0xe54e3cb484cfbc94!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        className="w-full h-full object-cover"
+      />
+
+      {/* Floating Info Tag on Map */}
+      <div className="absolute top-4 left-4 z-10 bg-white/95 backdrop-blur-md border border-[#B8860B]/40 p-4 rounded-2xl shadow-lg text-left max-w-xs">
+        <div className="flex items-center gap-2 text-xs font-bold text-[#8B6508] uppercase tracking-wider mb-1">
+          <FaMapMarkerAlt /> {info?.name || 'Grand Mahal'}
         </div>
+        <p className="text-[11px] text-stone-700 leading-tight mb-2.5 font-medium">
+          {info?.address}
+        </p>
         <a
-          href={MAHAL_INFO.googleMapsUrl}
+          href={mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-[#C9A227] hover:text-[#DFBA51] flex items-center gap-1.5 font-semibold transition-colors px-3 py-1 rounded-lg bg-[#C9A227]/10 border border-[#C9A227]/30"
+          className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#8B6508] hover:underline"
         >
-          Directions <FaDirections />
+          <FaDirections /> Open in Google Maps ↗
         </a>
-      </div>
-
-      {/* Map Canvas with Dark Styling */}
-      <div className="w-full flex-grow min-h-[380px] relative bg-stone-950">
-        <iframe
-          title="Murugu Mahal Dark Theme Location Map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.8524458376916!2d80.2078!3d13.0489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAyJzU2LjEiTiA4MMKwMTInMjguMSJF!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin"
-          className="w-full h-full min-h-[380px] border-0 rounded-b-3xl opacity-90 hover:opacity-100 transition-opacity duration-300"
-          style={{ filter: filterStyle }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
       </div>
     </div>
   );

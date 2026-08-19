@@ -9,47 +9,32 @@ import Button from './Button';
 
 const AdminLoginModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('admin@murugumahal.com');
+  const [email, setEmail] = useState('admin@grandmahal.com');
   const [password, setPassword] = useState('admin123');
-  const [pin, setPin] = useState('');
   const [error, setError] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const isLoggedIn = dataService.isAdminAuthenticated();
 
   if (!isOpen) return null;
 
-  const handleLogin = (e) => {
-    e?.preventDefault();
-    setError('');
-
-    // Accept demo credentials or PIN 1234 / 123456
-    if (
-      (email === 'admin@murugumahal.com' && password === 'admin123') ||
-      pin === '1234' ||
-      pin === '123456' ||
-      email.includes('admin')
-    ) {
-      dataService.loginAdmin();
-      setIsSuccess(true);
-      setTimeout(() => {
-        setIsSuccess(false);
-        onClose();
-        navigate('/admin');
-      }, 700);
-    } else {
-      setError('Invalid credentials. Use demo login or PIN: 1234');
-    }
-  };
+  const isAlreadyLoggedIn = dataService.isAdminAuthenticated();
 
   const handleQuickDemoLogin = () => {
     dataService.loginAdmin();
-    setIsSuccess(true);
-    setTimeout(() => {
-      setIsSuccess(false);
+    onClose();
+    navigate('/admin');
+  };
+
+  const handleCredentialLogin = (e) => {
+    e.preventDefault();
+    if (
+      (email === 'admin@grandmahal.com' || email === 'admin@murugumahal.com' || email === 'admin') &&
+      (password === 'admin123' || password === '1234')
+    ) {
+      dataService.loginAdmin();
       onClose();
       navigate('/admin');
-    }, 500);
+    } else {
+      setError('Invalid credentials. You can use the 1-Click Quick Demo Login button below!');
+    }
   };
 
   const handleLogout = () => {
@@ -60,42 +45,48 @@ const AdminLoginModal = ({ isOpen, onClose }) => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-md bg-stone-900 border border-[#C9A227]/40 rounded-3xl p-6 sm:p-8 shadow-[0_15px_50px_rgba(0,0,0,0.9)] overflow-hidden"
+          className="relative w-full max-w-md bg-white border-2 border-[#B8860B]/40 rounded-3xl p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.25)] text-left"
         >
-          {/* Top Gold Accent Light */}
-          <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-[#C9A227]/20 rounded-full blur-2xl pointer-events-none" />
-
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-stone-400 hover:text-white bg-stone-800/80 hover:bg-stone-700 w-8 h-8 rounded-full flex items-center justify-center transition-colors z-10 cursor-pointer"
+            className="absolute top-4 right-4 text-stone-400 hover:text-stone-700 bg-stone-100 hover:bg-stone-200 w-8 h-8 rounded-full flex items-center justify-center transition-colors cursor-pointer"
           >
             <FaTimes />
           </button>
 
-          {isLoggedIn ? (
-            <div className="text-center py-4 space-y-4">
-              <div className="w-16 h-16 rounded-2xl bg-[#C9A227]/20 border border-[#C9A227] text-[#C9A227] flex items-center justify-center text-3xl mx-auto shadow-lg">
-                <FaUserShield />
-              </div>
-              <div>
-                <span className="text-xs uppercase tracking-widest text-[#C9A227] font-semibold">
-                  Administrator Session Active
-                </span>
-                <h3 className="text-2xl font-serif font-bold text-stone-100 mt-1">
-                  Murugu Mahal Admin Portal
-                </h3>
-                <p className="text-xs text-stone-400 mt-1">
-                  You are logged in with full management permissions.
-                </p>
+          {/* Modal Header */}
+          <div className="text-center mb-6">
+            <div className="w-14 h-14 rounded-2xl bg-amber-50 border-2 border-[#B8860B] text-[#8B6508] flex items-center justify-center text-2xl mx-auto mb-3 shadow-sm">
+              <FaUserShield />
+            </div>
+            <span className="text-xs uppercase tracking-widest text-[#8B6508] font-bold">
+              Grand Mahal Management
+            </span>
+            <h3 className="text-2xl font-serif font-bold text-stone-900 mt-1">
+              Admin Portal Login
+            </h3>
+            <p className="text-xs text-stone-600 mt-1">
+              Manage live bookings, availability calendar, media gallery, and website components.
+            </p>
+          </div>
+
+          {isAlreadyLoggedIn ? (
+            <div className="space-y-4">
+              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs flex items-center gap-3">
+                <FaCheckCircle className="text-lg flex-shrink-0 text-emerald-600" />
+                <div>
+                  <span className="font-bold block">Admin Session Active</span>
+                  <span>You are currently authenticated as the venue manager.</span>
+                </div>
               </div>
 
-              <div className="pt-3 space-y-2.5">
+              <div className="space-y-2.5 pt-2">
                 <Button
                   variant="primary"
                   onClick={() => {
@@ -103,7 +94,7 @@ const AdminLoginModal = ({ isOpen, onClose }) => {
                     navigate('/admin');
                   }}
                   icon={FaArrowRight}
-                  className="w-full justify-center py-3 text-sm font-bold"
+                  className="w-full justify-center py-3 text-xs font-bold shadow-md"
                 >
                   Enter Admin Dashboard
                 </Button>
@@ -112,108 +103,69 @@ const AdminLoginModal = ({ isOpen, onClose }) => {
                   variant="outline"
                   onClick={handleLogout}
                   icon={FaSignOutAlt}
-                  className="w-full justify-center py-2.5 text-xs text-red-400 border-red-900/50 hover:bg-red-950/40"
+                  className="w-full justify-center py-2.5 text-xs text-stone-600"
                 >
-                  Logout Session
+                  Sign Out Session
                 </Button>
               </div>
             </div>
           ) : (
-            <div>
-              <div className="text-center mb-6">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#DFBA51] to-[#997A15] text-stone-950 flex items-center justify-center text-2xl mx-auto mb-3 shadow-[0_0_20px_rgba(201,162,39,0.4)]">
-                  <FaUserShield />
+            <div className="space-y-5">
+              {/* ⚡ 1-Click Quick Demo Login Button */}
+              <div className="p-4 rounded-2xl bg-amber-50 border-2 border-[#B8860B] space-y-2 text-center shadow-xs">
+                <div className="text-xs font-bold text-[#8B6508] flex items-center justify-center gap-1.5">
+                  <span>⚡</span> 1-Click Quick Demo Access
                 </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C9A227]/15 border border-[#C9A227]/40 text-[#C9A227] text-[11px] font-semibold mb-2">
-                  <span className="w-2 h-2 rounded-full bg-[#C9A227] animate-pulse" />
-                  Demo Admin Access Mode
-                </div>
-                <h3 className="text-2xl font-serif font-bold text-stone-100">
-                  Admin Portal Login
-                </h3>
-                <p className="text-xs text-stone-400 mt-1">
-                  Manage hall bookings, edit pricing, upload photos, and update all website components.
+                <p className="text-[11px] text-stone-600">
+                  Instantly access the full Admin Portal without entering credentials:
                 </p>
-              </div>
-
-              {/* 1-Click Quick Demo Login Button */}
-              <div className="mb-5 p-3.5 rounded-2xl bg-[#C9A227]/10 border border-[#C9A227]/30 text-center">
-                <p className="text-[11px] text-stone-300 mb-2">
-                  🚀 For immediate demo evaluation, click below:
-                </p>
-                <button
-                  type="button"
+                <Button
+                  variant="primary"
                   onClick={handleQuickDemoLogin}
-                  className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#DFBA51] via-[#C9A227] to-[#997A15] text-stone-950 font-bold text-xs shadow-lg hover:scale-[1.02] active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  icon={FaSignInAlt}
+                  className="w-full justify-center py-3 text-xs font-bold shadow-md"
                 >
-                  <FaSignInAlt /> ⚡ 1-Click Quick Demo Login
-                </button>
+                  ⚡ Quick Demo Login (1-Click)
+                </Button>
               </div>
 
-              <div className="relative flex py-2 items-center">
-                <div className="flex-grow border-t border-stone-800"></div>
-                <span className="flex-shrink mx-3 text-[10px] uppercase text-stone-500 font-semibold tracking-wider">
-                  Or use credentials
-                </span>
-                <div className="flex-grow border-t border-stone-800"></div>
+              <div className="flex items-center gap-3 text-stone-400 text-xs">
+                <div className="flex-grow h-[1px] bg-stone-200" />
+                <span className="text-[10px] uppercase font-bold text-stone-500">Or use credentials</span>
+                <div className="flex-grow h-[1px] bg-stone-200" />
               </div>
 
-              <form onSubmit={handleLogin} className="space-y-3.5 mt-2 text-left">
+              {/* Standard Form */}
+              <form onSubmit={handleCredentialLogin} className="space-y-3.5 text-xs">
                 <div>
-                  <label className="block text-[11px] text-stone-300 font-medium mb-1">
-                    Admin Email / Username
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-stone-950 border border-stone-800 rounded-xl px-3.5 py-2.5 text-xs text-stone-100 focus:outline-none focus:border-[#C9A227]"
-                      placeholder="admin@murugumahal.com"
-                    />
-                  </div>
+                  <label className="block text-stone-700 font-bold mb-1">Admin Email / Username</label>
+                  <input
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="admin@grandmahal.com"
+                    className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 focus:outline-none focus:border-[#B8860B]"
+                  />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] text-stone-300 font-medium mb-1">
-                    Password / Quick PIN (1234)
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="w-full bg-stone-950 border border-stone-800 rounded-xl px-3.5 py-2.5 text-xs text-stone-100 focus:outline-none focus:border-[#C9A227]"
-                      placeholder="admin123 or PIN 1234"
-                    />
-                  </div>
+                  <label className="block text-stone-700 font-bold mb-1">Password</label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="admin123"
+                    className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 focus:outline-none focus:border-[#B8860B]"
+                  />
                 </div>
 
                 {error && (
-                  <p className="text-xs text-red-400 bg-red-950/40 p-2 rounded-lg border border-red-900/50">
-                    {error}
-                  </p>
+                  <p className="text-[11px] text-rose-600 font-semibold">{error}</p>
                 )}
 
-                {isSuccess && (
-                  <div className="flex items-center justify-center gap-2 text-xs text-[#C9A227] font-semibold py-1">
-                    <FaCheckCircle /> Login successful! Redirecting...
-                  </div>
-                )}
-
-                <div className="pt-2">
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    className="w-full justify-center py-3 text-xs font-bold"
-                  >
-                    Enter Management Console
-                  </Button>
-                </div>
-
-                <p className="text-[10px] text-center text-stone-500 pt-1">
-                  Default credentials: <span className="text-[#C9A227]">admin@murugumahal.com</span> / <span className="text-[#C9A227]">admin123</span> (or PIN <span className="text-[#C9A227]">1234</span>)
-                </p>
+                <Button type="submit" variant="secondary" className="w-full py-2.5 text-xs font-bold">
+                  Sign In with Password
+                </Button>
               </form>
             </div>
           )}

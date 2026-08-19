@@ -14,7 +14,7 @@ const VideosPage = () => {
       <SectionTitle
         subtitle="Cinematic Cinema"
         title="Event Video Highlights"
-        description="Watch real wedding processions, stage lighting setups, and grand reception walkthroughs filmed inside Murugu Mahal."
+        description="Watch real wedding processions, stage lighting setups, and grand reception walkthroughs filmed inside Grand Mahal."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -27,32 +27,32 @@ const VideosPage = () => {
             transition={{ duration: 0.5, delay: idx * 0.1 }}
             whileHover={{ y: -6 }}
             onClick={() => setSelectedVideo(video)}
-            className="glass-card rounded-2xl overflow-hidden group border border-stone-800 hover:border-[#C9A227] cursor-pointer shadow-lg flex flex-col justify-between"
+            className="glass-card rounded-2xl overflow-hidden group border border-stone-200 hover:border-[#B8860B] cursor-pointer shadow-md hover:shadow-xl flex flex-col justify-between bg-white"
           >
             {/* Video Thumbnail */}
-            <div className="relative aspect-video overflow-hidden bg-stone-950">
+            <div className="relative aspect-video overflow-hidden bg-stone-900">
               <img
                 src={video.thumbnail}
                 alt={video.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-[#C9A227] text-stone-950 flex items-center justify-center text-2xl shadow-[0_0_25px_#C9A227] group-hover:scale-110 transition-transform pl-1">
+              <div className="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#8B6508] text-white flex items-center justify-center text-2xl shadow-[0_0_25px_rgba(184,134,11,0.6)] group-hover:scale-110 transition-transform pl-1">
                   <FaPlay />
                 </div>
               </div>
 
-              <span className="absolute bottom-3 right-3 bg-stone-950/90 text-stone-200 text-xs font-mono font-semibold px-2.5 py-1 rounded">
+              <span className="absolute bottom-3 right-3 bg-black/80 text-white text-xs font-mono font-bold px-2.5 py-1 rounded">
                 {video.duration}
               </span>
             </div>
 
             {/* Video Info */}
             <div className="p-6 text-left space-y-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#C9A227] flex items-center gap-1.5">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#8B6508] flex items-center gap-1.5">
                 <FaVideo /> {video.eventType}
               </span>
-              <h3 className="text-lg font-serif font-bold text-stone-100 group-hover:text-[#C9A227] transition-colors">
+              <h3 className="text-lg font-serif font-bold text-stone-900 group-hover:text-[#B8860B] transition-colors">
                 {video.title}
               </h3>
             </div>
