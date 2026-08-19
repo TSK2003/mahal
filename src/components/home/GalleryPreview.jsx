@@ -1,61 +1,67 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { FaExpand, FaArrowRight } from 'react-icons/fa';
 import SectionTitle from '../common/SectionTitle';
-import Button from '../common/Button';
 import LightboxModal from '../common/LightboxModal';
 import useMahalData from '../../hooks/useMahalData';
+import Button from '../common/Button';
 
 const GalleryPreview = () => {
   const { gallery } = useMahalData();
-  const previewImages = gallery.slice(0, 8);
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <SectionTitle
-        subtitle="Visual Splendor"
-        title="Royal Gallery Preview"
-        description="A glimpse into the stunning floral decors, chandelier lighting, and grand setups hosted at Murugu Mahal."
-      />
+  const previewImages = gallery.slice(0, 6);
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+  return (
+    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <SectionTitle
+          subtitle="Visual Tour"
+          title="Photo Gallery Highlights"
+          description="Explore our grand mandap stages, high ceiling chandeliers, dining halls, and exterior illuminations."
+          align="left"
+          className="mb-0"
+        />
+
+        <NavLink to="/gallery" className="hidden sm:block">
+          <Button variant="secondary" icon={FaArrowRight}>
+            View Full Gallery
+          </Button>
+        </NavLink>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {previewImages.map((img, idx) => (
-          <motion.div
+          <div
             key={img.id}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: idx * 0.05 }}
-            whileHover={{ y: -6 }}
             onClick={() => setLightboxIndex(idx)}
-            className="group relative aspect-[4/3] rounded-2xl overflow-hidden glass-card border border-stone-800 hover:border-[#C9A227] cursor-pointer shadow-lg"
+            className="group relative aspect-[4/3] rounded-lg overflow-hidden glass-card border border-stone-200 hover:border-stone-300 cursor-pointer shadow-xs bg-white"
           >
             <img
               src={img.image}
               alt={img.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
-              <span className="text-[10px] uppercase font-semibold tracking-wider text-[#C9A227]">
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3.5 flex flex-col justify-end text-left">
+              <span className="text-[9px] uppercase font-bold text-amber-300 tracking-wider">
                 {img.category}
               </span>
-              <h4 className="text-stone-100 font-serif font-bold text-sm">
+              <h4 className="text-white font-serif font-bold text-xs">
                 {img.title}
               </h4>
-              <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-stone-900/80 border border-[#C9A227] text-[#C9A227] flex items-center justify-center text-xs">
+              <div className="absolute top-2.5 right-2.5 w-6 h-6 rounded-md bg-white text-[#8B6508] flex items-center justify-center text-[10px] shadow-xs">
                 <FaExpand />
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
-      <div className="mt-12 text-center">
+      <div className="mt-6 sm:hidden">
         <NavLink to="/gallery">
-          <Button variant="primary" icon={FaArrowRight} className="px-8 py-3.5">
-            View Full Gallery ({gallery.length}+ Photos)
+          <Button variant="secondary" icon={FaArrowRight} className="w-full justify-center">
+            View Full Gallery
           </Button>
         </NavLink>
       </div>

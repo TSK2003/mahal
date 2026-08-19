@@ -7,7 +7,7 @@ const GoogleMap = ({ theme = 'light', className = '' }) => {
   const mapsUrl = info?.googleMapsUrl || 'https://maps.google.com';
 
   return (
-    <div className={`relative w-full h-[400px] rounded-3xl overflow-hidden shadow-xl border border-stone-200 ${className}`}>
+    <div className={`relative w-full h-[400px] rounded-lg overflow-hidden shadow-xs border border-stone-200 ${className}`}>
       {/* Embedded Google Map Iframe */}
       <iframe
         title="Grand Mahal Location"
@@ -21,21 +21,21 @@ const GoogleMap = ({ theme = 'light', className = '' }) => {
         className="w-full h-full object-cover"
       />
 
-      {/* Floating Info Tag on Map */}
-      <div className="absolute top-4 left-4 z-10 bg-white/95 backdrop-blur-md border border-[#B8860B]/40 p-4 rounded-2xl shadow-lg text-left max-w-xs">
-        <div className="flex items-center gap-2 text-xs font-bold text-[#8B6508] uppercase tracking-wider mb-1">
+      {/* Info Tag on Map */}
+      <div className="absolute top-3 left-3 z-10 bg-white/95 backdrop-blur-xs border border-stone-200 p-3.5 rounded-lg shadow-xs text-left max-w-xs font-sans">
+        <div className="flex items-center gap-1.5 text-xs font-bold text-[#8B6508] uppercase tracking-wider mb-1">
           <FaMapMarkerAlt /> {info?.name || 'Grand Mahal'}
         </div>
-        <p className="text-[11px] text-stone-700 leading-tight mb-2.5 font-medium">
+        <p className="text-[11px] text-stone-700 leading-tight mb-2 font-medium">
           {info?.address}
         </p>
         <a
           href={mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#8B6508] hover:underline"
+          className="inline-flex items-center gap-1 text-[11px] font-bold text-[#8B6508] hover:underline"
         >
-          <FaDirections /> Open in Google Maps ↗
+          <FaDirections /> Open in Google Maps
         </a>
       </div>
     </div>

@@ -13,14 +13,13 @@ const TABS = [
   { id: 'profile', name: 'Profile & Contact', icon: FaInfoCircle },
   { id: 'stats', name: 'Specs & Stats', icon: FaCrown },
   { id: 'facilities', name: 'Facilities & Amenities', icon: FaSnowflake },
-  { id: 'events', name: 'Event Services', icon: FaUtensils },
   { id: 'packages', name: 'Tariff Packages', icon: FaTag },
   { id: 'testimonials', name: 'Client Reviews', icon: FaStar },
   { id: 'faqs', name: 'FAQs', icon: FaQuestionCircle }
 ];
 
 const AdminContentManager = () => {
-  const { info, facilities, events, packages, testimonials, faqs } = useMahalData();
+  const { info, facilities, packages, testimonials, faqs } = useMahalData();
   const [searchParams] = useSearchParams();
   const initialTab = searchParams.get('tab') || 'profile';
 
@@ -52,27 +51,27 @@ const AdminContentManager = () => {
   };
 
   return (
-    <div className="space-y-8 text-left">
+    <div className="space-y-6 text-left font-sans">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-stone-200 pb-5">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-stone-200 pb-4">
         <div>
-          <span className="text-xs uppercase font-bold tracking-widest text-[#8B6508]">
-            Dynamic Component Content Management System
+          <span className="text-[11px] uppercase font-bold tracking-wider text-[#8B6508]">
+            Content Management System
           </span>
-          <h1 className="text-2xl sm:text-3xl font-serif font-extrabold text-stone-900 mt-1">
+          <h1 className="text-xl sm:text-2xl font-bold text-stone-900 mt-0.5">
             Website Content & Pricing Editor
           </h1>
         </div>
 
         {saveSuccess && (
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 text-xs font-bold shadow-sm">
-            <FaCheckCircle className="text-emerald-600" /> Changes Published Live to Website!
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-100 border border-emerald-300 text-emerald-800 text-xs font-semibold shadow-xs">
+            <FaCheckCircle className="text-emerald-600" /> Changes Published Live
           </div>
         )}
       </div>
 
       {/* Navigation Tabs Bar */}
-      <div className="flex flex-wrap gap-2 border-b border-stone-200 pb-3">
+      <div className="flex flex-wrap gap-1.5 border-b border-stone-200 pb-2.5">
         {TABS.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -80,13 +79,13 @@ const AdminContentManager = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 isActive
-                  ? 'bg-[#B8860B] text-white shadow-md'
-                  : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-400 hover:text-stone-900 shadow-xs'
+                  ? 'bg-[#B8860B] text-white shadow-xs'
+                  : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-300 hover:text-stone-900'
               }`}
             >
-              <Icon className="text-sm" />
+              <Icon className="text-xs" />
               <span>{tab.name}</span>
             </button>
           );
@@ -95,88 +94,88 @@ const AdminContentManager = () => {
 
       {/* Tab 1: Profile & Contact */}
       {activeTab === 'profile' && (
-        <form onSubmit={handleSaveProfile} className="glass-card rounded-3xl p-8 border border-stone-200 shadow-md space-y-6 max-w-4xl bg-white text-xs">
-          <h3 className="text-lg font-serif font-bold text-stone-900 border-b border-stone-100 pb-3">
+        <form onSubmit={handleSaveProfile} className="glass-card rounded-lg p-6 border border-stone-200 shadow-xs space-y-4 max-w-4xl bg-white text-xs">
+          <h3 className="text-sm font-bold text-stone-900 border-b border-stone-100 pb-2">
             Mahal Identity & Public Contact Information
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
-              <label className="block text-stone-700 font-bold mb-1">Mahal Brand Name</label>
+              <label className="block text-stone-700 font-semibold mb-1">Mahal Brand Name</label>
               <input
                 type="text"
                 value={profileForm.name}
                 onChange={(e) => setProfileForm({ ...profileForm, name: e.target.value })}
-                className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 focus:border-[#B8860B]"
+                className="w-full bg-stone-50 border border-stone-300 rounded-lg px-3 py-2 text-stone-900 focus:border-[#B8860B]"
               />
             </div>
 
             <div>
-              <label className="block text-stone-700 font-bold mb-1">Brand Tagline</label>
+              <label className="block text-stone-700 font-semibold mb-1">Brand Tagline</label>
               <input
                 type="text"
                 value={profileForm.tagline}
                 onChange={(e) => setProfileForm({ ...profileForm, tagline: e.target.value })}
-                className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 focus:border-[#B8860B]"
+                className="w-full bg-stone-50 border border-stone-300 rounded-lg px-3 py-2 text-stone-900 focus:border-[#B8860B]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-stone-700 font-bold mb-1">Detailed Venue Description</label>
+            <label className="block text-stone-700 font-semibold mb-1">Detailed Venue Description</label>
             <textarea
               rows={3}
               value={profileForm.shortDesc}
               onChange={(e) => setProfileForm({ ...profileForm, shortDesc: e.target.value })}
-              className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2 text-stone-900 focus:border-[#B8860B]"
+              className="w-full bg-stone-50 border border-stone-300 rounded-lg px-3 py-1.5 text-stone-900 focus:border-[#B8860B]"
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
             <div>
-              <label className="block text-stone-700 font-bold mb-1">Primary Phone</label>
+              <label className="block text-stone-700 font-semibold mb-1">Primary Phone</label>
               <input
                 type="text"
                 value={profileForm.phone}
                 onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })}
-                className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 font-mono focus:border-[#B8860B]"
+                className="w-full bg-stone-50 border border-stone-300 rounded-lg px-3 py-2 text-stone-900 font-mono focus:border-[#B8860B]"
               />
             </div>
 
             <div>
-              <label className="block text-stone-700 font-bold mb-1">WhatsApp Phone (International)</label>
+              <label className="block text-stone-700 font-semibold mb-1">WhatsApp Phone</label>
               <input
                 type="text"
                 value={profileForm.whatsapp}
                 onChange={(e) => setProfileForm({ ...profileForm, whatsapp: e.target.value })}
-                className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 font-mono focus:border-[#B8860B]"
+                className="w-full bg-stone-50 border border-stone-300 rounded-lg px-3 py-2 text-stone-900 font-mono focus:border-[#B8860B]"
               />
             </div>
 
             <div>
-              <label className="block text-stone-700 font-bold mb-1">Official Email</label>
+              <label className="block text-stone-700 font-semibold mb-1">Official Email</label>
               <input
                 type="email"
                 value={profileForm.email}
                 onChange={(e) => setProfileForm({ ...profileForm, email: e.target.value })}
-                className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 focus:border-[#B8860B]"
+                className="w-full bg-stone-50 border border-stone-300 rounded-lg px-3 py-2 text-stone-900 focus:border-[#B8860B]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-stone-700 font-bold mb-1">Full Postal Address</label>
+            <label className="block text-stone-700 font-semibold mb-1">Full Postal Address</label>
             <input
               type="text"
               value={profileForm.address}
               onChange={(e) => setProfileForm({ ...profileForm, address: e.target.value })}
-              className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 focus:border-[#B8860B]"
+              className="w-full bg-stone-50 border border-stone-300 rounded-lg px-3 py-2 text-stone-900 focus:border-[#B8860B]"
             />
           </div>
 
           <div className="pt-2">
-            <Button type="submit" variant="primary" icon={FaSave} className="py-3 font-bold shadow-md">
-              Save & Publish Profile Updates
+            <Button type="submit" variant="primary" icon={FaSave} className="py-2.5 font-semibold shadow-xs">
+              Save Profile Updates
             </Button>
           </div>
         </form>
@@ -184,14 +183,14 @@ const AdminContentManager = () => {
 
       {/* Tab 2: Specs & Stats */}
       {activeTab === 'stats' && (
-        <div className="glass-card rounded-3xl p-8 border border-stone-200 shadow-md space-y-6 max-w-4xl bg-white text-xs">
-          <h3 className="text-lg font-serif font-bold text-stone-900 border-b border-stone-100 pb-3">
+        <div className="glass-card rounded-lg p-6 border border-stone-200 shadow-xs space-y-4 max-w-4xl bg-white text-xs">
+          <h3 className="text-sm font-bold text-stone-900 border-b border-stone-100 pb-2">
             Hall Dimensions & Technical Capacity Specs
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
             {(profileForm.stats || []).map((st, idx) => (
-              <div key={idx} className="p-4 rounded-2xl bg-[#FAF8F5] border border-stone-200 space-y-2">
+              <div key={idx} className="p-3.5 rounded-lg bg-stone-50 border border-stone-200 space-y-1.5">
                 <label className="text-stone-600 block uppercase font-bold text-[10px]">{st.label}</label>
                 <input
                   type="text"
@@ -201,7 +200,7 @@ const AdminContentManager = () => {
                     copy[idx].value = e.target.value;
                     setProfileForm({ ...profileForm, stats: copy });
                   }}
-                  className="w-full bg-white border border-stone-300 rounded-xl px-3 py-2 text-stone-900 font-bold"
+                  className="w-full bg-white border border-stone-300 rounded-md px-2.5 py-1.5 text-stone-900 font-bold"
                 />
                 <input
                   type="text"
@@ -211,14 +210,14 @@ const AdminContentManager = () => {
                     copy[idx].sub = e.target.value;
                     setProfileForm({ ...profileForm, stats: copy });
                   }}
-                  className="w-full bg-white border border-stone-300 rounded-xl px-3 py-1.5 text-stone-500 text-[11px]"
+                  className="w-full bg-white border border-stone-300 rounded-md px-2.5 py-1 text-stone-500 text-[11px]"
                 />
               </div>
             ))}
           </div>
 
           <div className="pt-2">
-            <Button onClick={handleSaveProfile} variant="primary" icon={FaSave} className="py-3 font-bold shadow-md">
+            <Button onClick={handleSaveProfile} variant="primary" icon={FaSave} className="py-2 font-semibold">
               Save Stats
             </Button>
           </div>
@@ -227,9 +226,9 @@ const AdminContentManager = () => {
 
       {/* Tab 3: Facilities CRUD */}
       {activeTab === 'facilities' && (
-        <div className="space-y-6 max-w-5xl">
+        <div className="space-y-4 max-w-5xl">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-serif font-bold text-stone-900">
+            <h3 className="text-sm font-bold text-stone-900">
               Live Facilities & Amenities ({facilities.length})
             </h3>
             <Button
@@ -246,27 +245,27 @@ const AdminContentManager = () => {
                 }
               }}
               icon={FaPlus}
-              className="text-xs py-2 shadow-sm"
+              className="text-xs py-1.5"
             >
               Add Facility
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
             {facilities.map((fac) => (
-              <div key={fac.id} className="glass-card rounded-2xl p-5 border border-stone-200 flex flex-col justify-between shadow-xs bg-white text-xs">
+              <div key={fac.id} className="glass-card rounded-lg p-4 border border-stone-200 flex flex-col justify-between shadow-2xs bg-white text-xs">
                 <div>
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center justify-between mb-1.5">
                     <span className="text-[10px] font-bold text-[#8B6508] uppercase tracking-wider">{fac.category}</span>
                     <button
                       onClick={() => dataService.deleteFacility(fac.id)}
                       className="text-stone-400 hover:text-rose-600 transition-colors p-1"
                     >
-                      <FaTrash />
+                      <FaTrash className="text-xs" />
                     </button>
                   </div>
-                  <h4 className="font-serif font-bold text-stone-900 text-sm mb-1">{fac.title}</h4>
-                  <p className="text-stone-600 text-[11px] leading-relaxed">{fac.desc}</p>
+                  <h4 className="font-bold text-stone-900 text-xs mb-1">{fac.title}</h4>
+                  <p className="text-stone-600 text-[11px] leading-normal">{fac.desc}</p>
                 </div>
               </div>
             ))}
@@ -276,22 +275,22 @@ const AdminContentManager = () => {
 
       {/* Tab 4: Packages & Pricing */}
       {activeTab === 'packages' && (
-        <div className="space-y-6 max-w-5xl">
+        <div className="space-y-4 max-w-5xl">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-serif font-bold text-stone-900">
+            <h3 className="text-sm font-bold text-stone-900">
               Rental Tariff Packages ({packagesList.length})
             </h3>
-            <Button onClick={handleSavePackages} variant="primary" icon={FaSave} className="text-xs py-2 shadow-sm">
+            <Button onClick={handleSavePackages} variant="primary" icon={FaSave} className="text-xs py-1.5">
               Save All Packages
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {packagesList.map((pkg, idx) => (
-              <div key={pkg.id} className="glass-card rounded-3xl p-6 border border-stone-200 space-y-4 bg-white text-xs shadow-sm">
+              <div key={pkg.id} className="glass-card rounded-lg p-5 border border-stone-200 space-y-3 bg-white text-xs shadow-2xs">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-stone-700 font-bold block mb-1">Package Name</label>
+                    <label className="text-stone-700 font-semibold block mb-1">Package Name</label>
                     <input
                       type="text"
                       value={pkg.name}
@@ -300,11 +299,11 @@ const AdminContentManager = () => {
                         copy[idx].name = e.target.value;
                         setPackagesList(copy);
                       }}
-                      className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3 py-2 text-stone-900 font-bold"
+                      className="w-full bg-stone-50 border border-stone-300 rounded-md px-2.5 py-1.5 text-stone-900 font-bold"
                     />
                   </div>
                   <div>
-                    <label className="text-stone-700 font-bold block mb-1">Rental Price Tag</label>
+                    <label className="text-stone-700 font-semibold block mb-1">Rental Price Tag</label>
                     <input
                       type="text"
                       value={pkg.price}
@@ -313,13 +312,13 @@ const AdminContentManager = () => {
                         copy[idx].price = e.target.value;
                         setPackagesList(copy);
                       }}
-                      className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3 py-2 text-[#8B6508] font-bold font-mono"
+                      className="w-full bg-stone-50 border border-stone-300 rounded-md px-2.5 py-1.5 text-[#8B6508] font-bold font-mono"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-stone-700 font-bold block mb-1">Duration / Period</label>
+                  <label className="text-stone-700 font-semibold block mb-1">Duration / Period</label>
                   <input
                     type="text"
                     value={pkg.period}
@@ -328,12 +327,12 @@ const AdminContentManager = () => {
                       copy[idx].period = e.target.value;
                       setPackagesList(copy);
                     }}
-                    className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3 py-2 text-stone-800"
+                    className="w-full bg-stone-50 border border-stone-300 rounded-md px-2.5 py-1.5 text-stone-800"
                   />
                 </div>
 
                 <div>
-                  <label className="text-stone-700 font-bold block mb-1">Tagline</label>
+                  <label className="text-stone-700 font-semibold block mb-1">Tagline</label>
                   <input
                     type="text"
                     value={pkg.tagline}
@@ -342,7 +341,7 @@ const AdminContentManager = () => {
                       copy[idx].tagline = e.target.value;
                       setPackagesList(copy);
                     }}
-                    className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3 py-2 text-stone-600 text-xs"
+                    className="w-full bg-stone-50 border border-stone-300 rounded-md px-2.5 py-1.5 text-stone-600 text-xs"
                   />
                 </div>
               </div>
@@ -351,23 +350,43 @@ const AdminContentManager = () => {
         </div>
       )}
 
-      {/* Tab 5: FAQs */}
+      {/* Tab 5: Reviews */}
+      {activeTab === 'testimonials' && (
+        <div className="space-y-4 max-w-4xl">
+          <h3 className="text-sm font-bold text-stone-900">
+            Client Testimonials ({testimonials.length})
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            {testimonials.map((t) => (
+              <div key={t.id} className="glass-card rounded-lg p-4 border border-stone-200 space-y-2 bg-white text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-stone-900">{t.name}</span>
+                  <span className="text-[#8B6508] font-semibold text-[11px]">{t.event}</span>
+                </div>
+                <p className="text-stone-600 text-[11px] italic">"{t.comment}"</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Tab 6: FAQs */}
       {activeTab === 'faqs' && (
-        <div className="space-y-6 max-w-4xl">
+        <div className="space-y-4 max-w-4xl">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-serif font-bold text-stone-900">
+            <h3 className="text-sm font-bold text-stone-900">
               Frequently Asked Questions ({faqsList.length})
             </h3>
-            <Button onClick={handleSaveFaqs} variant="primary" icon={FaSave} className="text-xs py-2 shadow-sm">
+            <Button onClick={handleSaveFaqs} variant="primary" icon={FaSave} className="text-xs py-1.5">
               Save FAQs
             </Button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqsList.map((faq, idx) => (
-              <div key={idx} className="glass-card rounded-2xl p-5 border border-stone-200 space-y-3 bg-white text-xs shadow-xs">
+              <div key={idx} className="glass-card rounded-lg p-4 border border-stone-200 space-y-2 bg-white text-xs shadow-2xs">
                 <div>
-                  <label className="text-stone-700 font-bold block mb-1">Question:</label>
+                  <label className="text-stone-700 font-semibold block mb-1">Question:</label>
                   <input
                     type="text"
                     value={faq.q}
@@ -376,12 +395,12 @@ const AdminContentManager = () => {
                       copy[idx].q = e.target.value;
                       setFaqsList(copy);
                     }}
-                    className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2 text-stone-900 font-bold"
+                    className="w-full bg-stone-50 border border-stone-300 rounded-md px-3 py-1.5 text-stone-900 font-bold"
                   />
                 </div>
 
                 <div>
-                  <label className="text-stone-700 font-bold block mb-1">Answer:</label>
+                  <label className="text-stone-700 font-semibold block mb-1">Answer:</label>
                   <textarea
                     rows={2}
                     value={faq.a}
@@ -390,7 +409,7 @@ const AdminContentManager = () => {
                       copy[idx].a = e.target.value;
                       setFaqsList(copy);
                     }}
-                    className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2 text-stone-600 leading-relaxed"
+                    className="w-full bg-stone-50 border border-stone-300 rounded-md px-3 py-1 text-stone-600"
                   />
                 </div>
               </div>

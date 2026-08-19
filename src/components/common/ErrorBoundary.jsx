@@ -12,33 +12,31 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error("ErrorBoundary caught an error:", error, errorInfo);
+    console.error('ErrorBoundary caught error:', error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-[50vh] flex flex-col items-center justify-center p-8 text-center bg-stone-950 text-stone-100 my-12 rounded-3xl border border-stone-800 max-w-xl mx-auto">
-          <div className="w-16 h-16 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-3xl mb-4 border border-red-500/40">
+        <div className="min-h-[50vh] flex flex-col items-center justify-center p-8 text-center bg-white text-stone-900 my-12 rounded-lg border border-stone-200 shadow-sm max-w-xl mx-auto font-sans">
+          <div className="w-12 h-12 rounded-lg bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center text-xl mb-4">
             <FaExclamationTriangle />
           </div>
-          <h2 className="text-2xl font-serif font-bold text-stone-100 mb-2">Something went wrong</h2>
-          <p className="text-xs text-stone-400 mb-6 max-w-md">
-            {this.state.error?.message || "An unexpected error occurred while loading this section."}
+          <h2 className="text-xl font-bold font-serif text-stone-900 mb-2">
+            Something went wrong while rendering this section
+          </h2>
+          <p className="text-xs text-stone-600 mb-6 max-w-md">
+            {this.state.error?.message || 'An unexpected error occurred. Please click below to refresh the page.'}
           </p>
           <button
-            onClick={() => {
-              localStorage.clear();
-              window.location.reload();
-            }}
-            className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#C9A227] text-stone-950 font-bold text-xs shadow-lg hover:scale-105 transition-transform cursor-pointer"
+            onClick={() => window.location.reload()}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#B8860B] hover:bg-[#9A7009] text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer"
           >
-            <FaRedo /> Reset & Reload Website
+            <FaRedo className="text-xs" /> Refresh Page
           </button>
         </div>
       );
     }
-
     return this.props.children;
   }
 }

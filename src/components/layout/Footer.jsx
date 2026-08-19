@@ -14,24 +14,21 @@ const Footer = ({ onOpenEnquiry }) => {
 
   return (
     <>
-      <footer className="bg-white text-stone-800 border-t border-[#B8860B]/30 pt-16 pb-12 relative overflow-hidden shadow-inner">
-        {/* Decorative Top Gold Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-[#B8860B] to-transparent opacity-80" />
-
+      <footer className="bg-white text-stone-800 border-t border-stone-200 pt-12 pb-8 relative overflow-hidden font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-stone-200 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-stone-200 text-left">
             
             {/* Col 1: Brand Info */}
-            <div className="lg:col-span-2 space-y-4">
-              <NavLink to="/" className="flex items-center gap-3 group">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D4AF37] via-[#B8860B] to-[#8B6508] flex items-center justify-center text-white text-xl font-bold shadow-[0_4px_15px_rgba(184,134,11,0.3)]">
+            <div className="lg:col-span-2 space-y-3.5">
+              <NavLink to="/" className="flex items-center gap-2.5 group">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#D4AF37] via-[#B8860B] to-[#8B6508] flex items-center justify-center text-white text-base font-bold shadow-xs">
                   <FaCrown />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-serif text-xl font-extrabold tracking-wide text-stone-900 group-hover:text-[#B8860B] transition-colors">
+                  <span className="font-serif text-lg font-extrabold tracking-tight text-stone-900 group-hover:text-[#B8860B] transition-colors">
                     {(info?.name || 'Grand Mahal').toUpperCase()}
                   </span>
-                  <span className="text-[9px] uppercase tracking-[0.25em] text-[#8B6508] font-bold">
+                  <span className="text-[9px] uppercase tracking-wider text-[#8B6508] font-bold">
                     Luxury Wedding Venue & Convention Center
                   </span>
                 </div>
@@ -42,37 +39,37 @@ const Footer = ({ onOpenEnquiry }) => {
               </p>
 
               {/* Quick Actions Buttons */}
-              <div className="pt-2 flex flex-wrap gap-2.5">
+              <div className="pt-1 flex flex-wrap gap-2">
                 <Button
                   variant="primary"
                   onClick={onOpenEnquiry}
-                  className="text-xs px-4 py-2 shadow-sm"
+                  className="text-xs px-3.5 py-1.5 shadow-2xs"
                 >
-                  <FaCalendarAlt /> Enquire Now
+                  <FaCalendarAlt className="text-xs" /> Enquire Now
                 </Button>
                 <a
                   href={`tel:${info?.phone}`}
-                  className="inline-flex items-center gap-2 px-3.5 py-2 bg-stone-50 border border-stone-300 text-xs font-bold text-stone-800 hover:text-[#B8860B] hover:border-[#B8860B] rounded-full transition-colors shadow-2xs"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-stone-50 border border-stone-300 text-xs font-semibold text-stone-800 hover:text-[#B8860B] hover:border-[#B8860B] rounded-lg transition-colors shadow-2xs"
                 >
-                  <FaPhoneAlt className="text-[#B8860B]" /> Call Desk
+                  <FaPhoneAlt className="text-[#B8860B] text-[10px]" /> Call Desk
                 </a>
                 <a
                   href={`https://wa.me/${info?.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-3.5 py-2 bg-emerald-50 border border-emerald-300 text-xs font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white rounded-full transition-colors shadow-2xs"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-700 hover:bg-emerald-600 hover:text-white rounded-lg transition-colors shadow-2xs"
                 >
-                  <FaWhatsapp /> WhatsApp
+                  <FaWhatsapp className="text-xs" /> WhatsApp
                 </a>
               </div>
             </div>
 
             {/* Col 2: Navigation */}
             <div>
-              <h4 className="text-sm font-serif font-bold text-stone-900 uppercase tracking-wider mb-4 border-l-2 border-[#B8860B] pl-3">
+              <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-3 border-l-2 border-[#B8860B] pl-2.5">
                 Navigation
               </h4>
-              <ul className="space-y-2 text-xs font-medium">
+              <ul className="space-y-1.5 text-xs font-medium">
                 <li>
                   <NavLink to="/" className="text-stone-600 hover:text-[#B8860B] transition-colors block py-0.5">
                     Home Page
@@ -99,7 +96,7 @@ const Footer = ({ onOpenEnquiry }) => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/check-booking" className="text-[#8B6508] font-bold hover:underline block py-0.5">
+                  <NavLink to="/check-booking" className="text-[#8B6508] font-semibold hover:underline block py-0.5">
                     Check Booking Status
                   </NavLink>
                 </li>
@@ -118,10 +115,10 @@ const Footer = ({ onOpenEnquiry }) => {
 
             {/* Col 3: Services */}
             <div>
-              <h4 className="text-sm font-serif font-bold text-stone-900 uppercase tracking-wider mb-4 border-l-2 border-[#B8860B] pl-3">
+              <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-3 border-l-2 border-[#B8860B] pl-2.5">
                 Event Services
               </h4>
-              <ul className="space-y-2 text-xs text-stone-600 font-medium">
+              <ul className="space-y-1.5 text-xs text-stone-600 font-medium">
                 <li>Royal Traditional Weddings</li>
                 <li>Grand Evening Receptions</li>
                 <li>Engagement Ceremonies</li>
@@ -134,28 +131,28 @@ const Footer = ({ onOpenEnquiry }) => {
 
             {/* Col 4: Contact Information & Admin */}
             <div>
-              <h4 className="text-sm font-serif font-bold text-stone-900 uppercase tracking-wider mb-4 border-l-2 border-[#B8860B] pl-3">
+              <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-3 border-l-2 border-[#B8860B] pl-2.5">
                 Contact & Portal
               </h4>
-              <ul className="space-y-3 text-xs mb-6">
-                <li className="flex items-start gap-2.5">
-                  <FaMapMarkerAlt className="text-[#B8860B] text-sm flex-shrink-0 mt-0.5" />
+              <ul className="space-y-2.5 text-xs mb-4">
+                <li className="flex items-start gap-2">
+                  <FaMapMarkerAlt className="text-[#B8860B] text-xs flex-shrink-0 mt-0.5" />
                   <span className="text-stone-600">{info?.address}</span>
                 </li>
-                <li className="flex items-center gap-2.5">
-                  <FaPhoneAlt className="text-[#B8860B] text-sm flex-shrink-0" />
+                <li className="flex items-center gap-2">
+                  <FaPhoneAlt className="text-[#B8860B] text-xs flex-shrink-0" />
                   <a href={`tel:${info?.phone}`} className="hover:text-[#B8860B] transition-colors font-mono font-bold text-stone-900">
                     {info?.phone}
                   </a>
                 </li>
-                <li className="flex items-center gap-2.5">
-                  <FaWhatsapp className="text-[#25D366] text-base flex-shrink-0" />
+                <li className="flex items-center gap-2">
+                  <FaWhatsapp className="text-[#25D366] text-sm flex-shrink-0" />
                   <a href={`https://wa.me/${info?.whatsapp}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors font-mono font-bold text-stone-900">
                     {info?.whatsapp}
                   </a>
                 </li>
-                <li className="flex items-center gap-2.5">
-                  <FaEnvelope className="text-[#B8860B] text-sm flex-shrink-0" />
+                <li className="flex items-center gap-2">
+                  <FaEnvelope className="text-[#B8860B] text-xs flex-shrink-0" />
                   <a href={`mailto:${info?.email}`} className="hover:text-[#B8860B] transition-colors text-stone-600">
                     {info?.email}
                   </a>
@@ -163,21 +160,21 @@ const Footer = ({ onOpenEnquiry }) => {
               </ul>
 
               {/* Demo Admin Access link */}
-              <div className="pt-2">
+              <div className="pt-1">
                 {isAdmin ? (
                   <NavLink
                     to="/admin"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 hover:underline"
                   >
-                    <FaUserShield /> Open Admin Control Panel
+                    <FaUserShield className="text-xs" /> Admin Control Panel
                   </NavLink>
                 ) : (
                   <button
                     type="button"
                     onClick={() => setIsAdminLoginModalOpen(true)}
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#8B6508] hover:underline cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B6508] hover:underline cursor-pointer"
                   >
-                    <FaUserShield /> Open Admin Portal Login (Demo)
+                    <FaUserShield className="text-xs" /> Admin Portal Login (Demo)
                   </button>
                 )}
               </div>
@@ -186,10 +183,10 @@ const Footer = ({ onOpenEnquiry }) => {
           </div>
 
           {/* Bottom Copyright */}
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500 font-medium">
+          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-stone-500 font-medium">
             <p>© 2026 {info?.name || 'Grand Mahal'}. All Rights Reserved.</p>
-            <p className="flex items-center gap-1">
-              Crafted with <span className="text-[#B8860B]">♥</span> for Royal Weddings & Celebrations
+            <p>
+              Royal Weddings & Luxury Conventions
             </p>
           </div>
         </div>

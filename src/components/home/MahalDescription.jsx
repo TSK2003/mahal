@@ -1,6 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { FaCrown, FaHeart, FaUtensils, FaSmileBeam } from 'react-icons/fa';
+import { FaCrown, FaHeart, FaUtensils, FaUserTie } from 'react-icons/fa';
 import useMahalData from '../../hooks/useMahalData';
 
 const MahalDescription = () => {
@@ -10,46 +9,42 @@ const MahalDescription = () => {
     { icon: FaCrown, title: "14+ Years Legacy", desc: "Trusted by thousands of families across South India for unforgettable grand celebrations." },
     { icon: FaHeart, title: "Royal Architecture", desc: "Opulent gold carved pillars, high ceiling crystal chandeliers, and grand stage acoustic baffles." },
     { icon: FaUtensils, title: "Spacious Dining Hall", desc: "600-seater dining hall with modern stainless steel tables and heavy-duty steam kitchen." },
-    { icon: FaSmileBeam, title: "5-Star Hospitality", desc: "Dedicated floor supervisors, 24/7 security guards, and valet parking team." }
+    { icon: FaUserTie, title: "Hospitality Management", desc: "Dedicated floor supervisors, 24/7 security guards, and valet parking team." }
   ];
 
   return (
-    <section className="py-20 bg-white border-y border-stone-200 relative overflow-hidden">
+    <section className="py-16 bg-white border-y border-stone-200 relative overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <span className="text-xs uppercase tracking-[0.25em] text-[#8B6508] font-bold px-3.5 py-1 rounded-full bg-amber-50 border border-[#B8860B]/30">
-            Sacred Heritage & Hospitality
+        <div className="max-w-3xl mx-auto text-center mb-10">
+          <span className="text-[11px] uppercase tracking-wider text-[#8B6508] font-bold px-3 py-1 rounded-md bg-amber-50 border border-amber-200">
+            Heritage & Standards
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold font-serif text-stone-900 mt-3 mb-4 leading-tight">
+          <h2 className="text-2xl md:text-3xl font-bold font-serif text-stone-900 mt-2 mb-3 leading-tight">
             Where Every Ritual Holds Royal Dignity
           </h2>
-          <p className="text-sm text-stone-600 leading-relaxed">
+          <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
             At {info?.name || 'Grand Mahal'}, we understand that a marriage ceremony is a sacred union of two families. Our architecture is meticulously planned so that elders, couple, and thousands of guests enjoy effortless comfort throughout the auspicious occasion.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
           {pillars.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <motion.div
+              <div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-card rounded-2xl p-6 border border-stone-200 hover:border-[#B8860B] transition-all duration-300 shadow-md bg-[#FAF8F5]"
+                className="glass-card rounded-lg p-5 border border-stone-200 hover:border-stone-300 transition-all shadow-2xs bg-[#F8F9FA]"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#8B6508] text-white flex items-center justify-center text-xl font-bold mb-4 shadow-md">
+                <div className="w-10 h-10 rounded-lg bg-[#B8860B] text-white flex items-center justify-center text-lg font-bold mb-3 shadow-2xs">
                   <Icon />
                 </div>
-                <h3 className="text-lg font-serif font-bold text-stone-900 mb-2">
+                <h3 className="text-sm font-serif font-bold text-stone-900 mb-1.5">
                   {item.title}
                 </h3>
                 <p className="text-xs text-stone-600 leading-relaxed">
                   {item.desc}
                 </p>
-              </motion.div>
+              </div>
             );
           })}
         </div>

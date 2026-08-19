@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { 
   FaCalendarCheck, FaHourglassHalf, FaRupeeSign, FaCheckCircle, 
   FaCalendarAlt, FaPlus, FaImages, FaEdit, FaWhatsapp, 
-  FaPhoneAlt, FaArrowRight, FaCrown 
+  FaPhoneAlt, FaArrowRight, FaCrown, FaCheck, FaBuilding
 } from 'react-icons/fa';
 import useMahalData from '../../hooks/useMahalData';
 import { dataService } from '../../services/dataService';
@@ -29,122 +29,110 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="space-y-8 text-left">
-      {/* Top Welcome Banner */}
-      <div className="glass-card rounded-3xl p-6 sm:p-8 border-2 border-[#B8860B]/30 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white">
+    <div className="space-y-6 text-left font-sans">
+      {/* Top Header Card */}
+      <div className="glass-card rounded-lg p-5 sm:p-6 border border-stone-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-[#8B6508] uppercase tracking-wider mb-1">
-            <FaCrown /> Executive Operations Center
+          <div className="flex items-center gap-1.5 text-xs font-bold text-[#8B6508] uppercase tracking-wider mb-1">
+            <FaCrown className="text-xs" /> Operations Dashboard
           </div>
-          <h1 className="text-2xl sm:text-3xl font-serif font-extrabold text-stone-900">
-            {info?.name || 'Grand Mahal'} Overview
+          <h1 className="text-xl sm:text-2xl font-bold text-stone-900">
+            {info?.name || 'Grand Mahal'} Management
           </h1>
-          <p className="text-xs text-stone-600 mt-1">
-            Manage your Muhurtham reservations, slot availability, hall pricing, and customer billing.
+          <p className="text-xs text-stone-500 mt-0.5">
+            Real-time venue reservations, availability status, and revenue tracking.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <NavLink
             to="/admin/bookings"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white font-bold text-xs shadow-md hover:shadow-lg transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#B8860B] hover:bg-[#9A7009] text-white font-semibold text-xs shadow-xs transition-colors"
           >
-            <FaPlus /> New Booking Entry
+            <FaPlus className="text-[10px]" /> New Booking
           </NavLink>
         </div>
       </div>
 
       {/* KPI Metrics Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Metric 1: Total Bookings */}
-        <motion.div
-          whileHover={{ y: -4 }}
-          className="glass-card rounded-2xl p-6 border border-stone-200 shadow-sm bg-white"
-        >
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs uppercase font-bold text-stone-500 tracking-wider">Total Bookings</span>
-            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-lg">
+        <div className="glass-card rounded-lg p-5 border border-stone-200 shadow-xs bg-white">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] uppercase font-bold text-stone-500 tracking-wider">Total Bookings</span>
+            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-sm">
               <FaCalendarCheck />
             </div>
           </div>
-          <div className="text-3xl font-serif font-extrabold text-stone-900">
+          <div className="text-2xl font-bold text-stone-900">
             {totalBookings}
           </div>
-          <div className="text-xs text-stone-600 mt-1 font-medium">
+          <div className="text-[11px] text-stone-500 mt-1 font-medium">
             <span className="text-emerald-700 font-bold">{confirmedBookings.length} Confirmed</span> • {pendingBookings.length} Pending
           </div>
-        </motion.div>
+        </div>
 
         {/* Metric 2: Pending Enquiries */}
-        <motion.div
-          whileHover={{ y: -4 }}
-          className="glass-card rounded-2xl p-6 border border-stone-200 shadow-sm bg-white"
-        >
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs uppercase font-bold text-stone-500 tracking-wider">Pending Enquiries</span>
-            <div className="w-10 h-10 rounded-xl bg-amber-50 text-[#8B6508] flex items-center justify-center text-lg">
+        <div className="glass-card rounded-lg p-5 border border-stone-200 shadow-xs bg-white">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] uppercase font-bold text-stone-500 tracking-wider">Pending Enquiries</span>
+            <div className="w-8 h-8 rounded-lg bg-amber-50 text-[#8B6508] flex items-center justify-center text-sm">
               <FaHourglassHalf />
             </div>
           </div>
-          <div className="text-3xl font-serif font-extrabold text-[#8B6508]">
+          <div className="text-2xl font-bold text-[#8B6508]">
             {pendingBookings.length}
           </div>
-          <div className="text-xs text-stone-600 mt-1 font-medium">
-            Require phone/slot verification
+          <div className="text-[11px] text-stone-500 mt-1 font-medium">
+            Requires verification
           </div>
-        </motion.div>
+        </div>
 
         {/* Metric 3: Total Revenue Booked */}
-        <motion.div
-          whileHover={{ y: -4 }}
-          className="glass-card rounded-2xl p-6 border border-stone-200 shadow-sm bg-white"
-        >
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs uppercase font-bold text-stone-500 tracking-wider">Revenue Booked</span>
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg">
+        <div className="glass-card rounded-lg p-5 border border-stone-200 shadow-xs bg-white">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] uppercase font-bold text-stone-500 tracking-wider">Revenue Booked</span>
+            <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
               <FaRupeeSign />
             </div>
           </div>
-          <div className="text-3xl font-serif font-extrabold text-stone-900">
+          <div className="text-2xl font-bold text-stone-900 font-mono">
             ₹{totalRevenue.toLocaleString('en-IN')}
           </div>
-          <div className="text-xs text-emerald-700 font-bold mt-1">
-            Across active event contracts
+          <div className="text-[11px] text-emerald-700 font-bold mt-1">
+            Active contracts
           </div>
-        </motion.div>
+        </div>
 
         {/* Metric 4: Advance Collected */}
-        <motion.div
-          whileHover={{ y: -4 }}
-          className="glass-card rounded-2xl p-6 border border-stone-200 shadow-sm bg-white"
-        >
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs uppercase font-bold text-stone-500 tracking-wider">Advance Collected</span>
-            <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center text-lg">
+        <div className="glass-card rounded-lg p-5 border border-stone-200 shadow-xs bg-white">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] uppercase font-bold text-stone-500 tracking-wider">Advance Received</span>
+            <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-sm">
               <FaCheckCircle />
             </div>
           </div>
-          <div className="text-3xl font-serif font-extrabold text-stone-900">
+          <div className="text-2xl font-bold text-stone-900 font-mono">
             ₹{totalAdvance.toLocaleString('en-IN')}
           </div>
-          <div className="text-xs text-stone-600 mt-1 font-medium">
-            Received in bank / cash
+          <div className="text-[11px] text-stone-500 mt-1 font-medium">
+            Settled in bank
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Main Content Grid: Recent Bookings + Quick Controls */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Left: Recent Bookings Stream (Col 8) */}
-        <div className="lg:col-span-8 glass-card rounded-3xl p-6 sm:p-8 border border-stone-200 shadow-md space-y-5 bg-white">
-          <div className="flex items-center justify-between border-b border-stone-100 pb-4">
+        <div className="lg:col-span-8 glass-card rounded-lg p-5 sm:p-6 border border-stone-200 shadow-xs space-y-4 bg-white">
+          <div className="flex items-center justify-between border-b border-stone-100 pb-3">
             <div>
-              <h3 className="text-xl font-serif font-bold text-stone-900">
+              <h3 className="text-base font-bold text-stone-900">
                 Recent Bookings & Enquiries
               </h3>
-              <p className="text-xs text-stone-600 mt-0.5">
-                Real-time booking transactions submitted through website or manual entry.
+              <p className="text-xs text-stone-500 mt-0.5">
+                Real-time booking transactions and customer entries.
               </p>
             </div>
 
@@ -152,36 +140,36 @@ const AdminDashboard = () => {
               to="/admin/bookings"
               className="text-xs text-[#8B6508] font-bold hover:underline flex items-center gap-1"
             >
-              View All ({bookings.length}) <FaArrowRight className="text-[10px]" />
+              View All ({bookings.length}) <FaArrowRight className="text-[9px]" />
             </NavLink>
           </div>
 
-          <div className="space-y-3.5">
+          <div className="space-y-2.5">
             {bookings.slice(0, 5).map((booking) => (
               <div
                 key={booking.id}
-                className="p-4 rounded-2xl bg-[#FAF8F5] border border-stone-200 hover:border-[#B8860B] transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                className="p-3.5 rounded-lg bg-stone-50/80 border border-stone-200 hover:border-stone-300 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
               >
                 <div className="space-y-1">
-                  <div className="flex items-center gap-2.5">
-                    <span className="font-mono text-xs font-bold text-[#8B6508] px-2 py-0.5 rounded bg-amber-100 border border-[#B8860B]/30">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-[11px] font-bold text-[#8B6508] px-2 py-0.5 rounded-md bg-amber-50 border border-amber-200">
                       {booking.id}
                     </span>
-                    <h4 className="font-serif font-bold text-stone-900 text-sm">
+                    <h4 className="font-bold text-stone-900 text-xs sm:text-sm">
                       {booking.customerName}
                     </h4>
                   </div>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-600 font-medium">
-                    <span className="flex items-center gap-1 font-mono text-stone-800">
-                      <FaCalendarAlt className="text-[#B8860B]" /> {booking.eventDate} ({booking.timeSlot})
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-600">
+                    <span className="flex items-center gap-1 font-mono text-stone-700 font-medium">
+                      <FaCalendarAlt className="text-[#B8860B] text-[10px]" /> {booking.eventDate} ({booking.timeSlot})
                     </span>
-                    <span>{booking.eventType}</span>
-                    <span className="font-mono text-stone-900 font-bold">₹{Number(booking.totalAmount || 0).toLocaleString('en-IN')}</span>
+                    <span>• {booking.eventType}</span>
+                    <span className="font-mono text-stone-900 font-bold">• ₹{Number(booking.totalAmount || 0).toLocaleString('en-IN')}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <span className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${
+                <div className="flex items-center gap-1.5">
+                  <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${
                     booking.status === 'Confirmed'
                       ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                       : booking.status === 'Pending'
@@ -194,7 +182,7 @@ const AdminDashboard = () => {
                   {booking.status === 'Pending' && (
                     <button
                       onClick={() => handleQuickStatusChange(booking, 'Confirmed')}
-                      className="px-3 py-1 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors cursor-pointer shadow-2xs"
+                      className="px-2.5 py-1 rounded-md bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors cursor-pointer shadow-2xs"
                     >
                       Confirm
                     </button>
@@ -204,16 +192,18 @@ const AdminDashboard = () => {
                     href={`https://wa.me/${booking.phone.replace(/[^0-9]/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-600 hover:text-white flex items-center justify-center text-xs transition-colors"
+                    className="w-7 h-7 rounded-md bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white flex items-center justify-center text-xs transition-colors border border-emerald-200"
+                    title="WhatsApp"
                   >
                     <FaWhatsapp />
                   </a>
 
                   <a
                     href={`tel:${booking.phone}`}
-                    className="w-8 h-8 rounded-lg bg-stone-100 text-stone-700 hover:bg-stone-800 hover:text-white flex items-center justify-center text-xs transition-colors"
+                    className="w-7 h-7 rounded-md bg-stone-100 text-stone-700 hover:bg-stone-800 hover:text-white flex items-center justify-center text-xs transition-colors border border-stone-200"
+                    title="Call"
                   >
-                    <FaPhoneAlt />
+                    <FaPhoneAlt className="text-[10px]" />
                   </a>
                 </div>
               </div>
@@ -222,80 +212,80 @@ const AdminDashboard = () => {
         </div>
 
         {/* Right: Quick Controls & Status (Col 4) */}
-        <div className="lg:col-span-4 space-y-6">
+        <div className="lg:col-span-4 space-y-4">
           {/* Quick CMS Shortcuts */}
-          <div className="glass-card rounded-3xl p-6 border border-stone-200 shadow-md space-y-4 bg-white">
-            <h3 className="text-lg font-serif font-bold text-stone-900 border-b border-stone-100 pb-3">
-              Quick Management Shortcuts
+          <div className="glass-card rounded-lg p-5 border border-stone-200 shadow-xs space-y-3 bg-white">
+            <h3 className="text-sm font-bold text-stone-900 border-b border-stone-100 pb-2">
+              Management Shortcuts
             </h3>
 
-            <div className="space-y-2.5">
+            <div className="space-y-1.5">
               <NavLink
                 to="/admin/calendar"
-                className="flex items-center justify-between p-3 rounded-xl bg-[#FAF8F5] border border-stone-200 hover:border-[#B8860B] text-xs font-bold text-stone-800 transition-all"
+                className="flex items-center justify-between p-2.5 rounded-lg bg-stone-50 border border-stone-200 hover:border-stone-300 text-xs font-medium text-stone-800 transition-all"
               >
-                <span className="flex items-center gap-2.5">
-                  <FaCalendarAlt className="text-[#8B6508]" /> View Availability Calendar
+                <span className="flex items-center gap-2">
+                  <FaCalendarAlt className="text-[#8B6508]" /> Availability Calendar
                 </span>
-                <FaArrowRight className="text-[10px] text-stone-400" />
+                <FaArrowRight className="text-[9px] text-stone-400" />
               </NavLink>
 
               <NavLink
                 to="/admin/content"
-                className="flex items-center justify-between p-3 rounded-xl bg-[#FAF8F5] border border-stone-200 hover:border-[#B8860B] text-xs font-bold text-stone-800 transition-all"
+                className="flex items-center justify-between p-2.5 rounded-lg bg-stone-50 border border-stone-200 hover:border-stone-300 text-xs font-medium text-stone-800 transition-all"
               >
-                <span className="flex items-center gap-2.5">
-                  <FaEdit className="text-[#8B6508]" /> Edit Website Profile & Specs
+                <span className="flex items-center gap-2">
+                  <FaEdit className="text-[#8B6508]" /> Website Profile & Specs
                 </span>
-                <FaArrowRight className="text-[10px] text-stone-400" />
+                <FaArrowRight className="text-[9px] text-stone-400" />
               </NavLink>
 
               <NavLink
                 to="/admin/gallery"
-                className="flex items-center justify-between p-3 rounded-xl bg-[#FAF8F5] border border-stone-200 hover:border-[#B8860B] text-xs font-bold text-stone-800 transition-all"
+                className="flex items-center justify-between p-2.5 rounded-lg bg-stone-50 border border-stone-200 hover:border-stone-300 text-xs font-medium text-stone-800 transition-all"
               >
-                <span className="flex items-center gap-2.5">
-                  <FaImages className="text-[#8B6508]" /> Manage Photo Gallery ({gallery.length})
+                <span className="flex items-center gap-2">
+                  <FaImages className="text-[#8B6508]" /> Photo Gallery ({gallery.length})
                 </span>
-                <FaArrowRight className="text-[10px] text-stone-400" />
+                <FaArrowRight className="text-[9px] text-stone-400" />
               </NavLink>
 
               <NavLink
                 to="/admin/content?tab=packages"
-                className="flex items-center justify-between p-3 rounded-xl bg-[#FAF8F5] border border-stone-200 hover:border-[#B8860B] text-xs font-bold text-stone-800 transition-all"
+                className="flex items-center justify-between p-2.5 rounded-lg bg-stone-50 border border-stone-200 hover:border-stone-300 text-xs font-medium text-stone-800 transition-all"
               >
-                <span className="flex items-center gap-2.5">
-                  <FaCrown className="text-[#8B6508]" /> Edit Rental Packages ({packages.length})
+                <span className="flex items-center gap-2">
+                  <FaCrown className="text-[#8B6508]" /> Rental Packages ({packages.length})
                 </span>
-                <FaArrowRight className="text-[10px] text-stone-400" />
+                <FaArrowRight className="text-[9px] text-stone-400" />
               </NavLink>
             </div>
           </div>
 
           {/* Venue Info Snapshot */}
-          <div className="glass-card rounded-3xl p-6 border border-stone-200 shadow-md space-y-3 text-xs bg-white">
-            <h4 className="font-serif font-bold text-stone-900 text-sm border-b border-stone-100 pb-2">
-              Current Venue Information
+          <div className="glass-card rounded-lg p-5 border border-stone-200 shadow-xs space-y-2.5 text-xs bg-white">
+            <h4 className="font-bold text-stone-900 text-xs uppercase tracking-wider border-b border-stone-100 pb-2">
+              Venue Specs
             </h4>
             <div className="flex justify-between text-stone-600">
               <span>Main Hall Capacity:</span>
-              <span className="font-bold text-stone-900">1,200 Seats</span>
+              <span className="font-semibold text-stone-900">1,200 Seats</span>
             </div>
             <div className="flex justify-between text-stone-600">
               <span>Dining Hall:</span>
-              <span className="font-bold text-stone-900">600 Seats</span>
+              <span className="font-semibold text-stone-900">600 Seats</span>
             </div>
             <div className="flex justify-between text-stone-600">
               <span>AC Guest Suites:</span>
-              <span className="font-bold text-stone-900">14 Deluxe Rooms</span>
+              <span className="font-semibold text-stone-900">14 Deluxe Rooms</span>
             </div>
             <div className="flex justify-between text-stone-600">
               <span>Generator Backup:</span>
-              <span className="font-bold text-stone-900">250 KVA DG Set</span>
+              <span className="font-semibold text-stone-900">250 KVA DG Set</span>
             </div>
             <div className="flex justify-between text-stone-600">
               <span>Contact Desk:</span>
-              <span className="font-mono font-bold text-[#8B6508]">{info?.phone}</span>
+              <span className="font-mono font-semibold text-[#8B6508]">{info?.phone}</span>
             </div>
           </div>
         </div>

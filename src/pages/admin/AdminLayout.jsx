@@ -3,7 +3,7 @@ import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { 
   FaCrown, FaTachometerAlt, FaCalendarCheck, FaCalendarAlt, 
   FaEdit, FaImages, FaVideo, FaCog, FaSignOutAlt, 
-  FaExternalLinkAlt, FaBars, FaTimes, FaPlus, FaBell 
+  FaExternalLinkAlt, FaBars, FaTimes 
 } from 'react-icons/fa';
 import useMahalData from '../../hooks/useMahalData';
 import { dataService } from '../../services/dataService';
@@ -32,44 +32,44 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-stone-900 flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-[#F8F9FA] text-stone-900 flex flex-col lg:flex-row font-sans">
       {/* Mobile Top Header */}
-      <header className="lg:hidden bg-white border-b border-stone-200 px-4 py-3 flex items-center justify-between z-30 sticky top-0 shadow-sm">
+      <header className="lg:hidden bg-white border-b border-stone-200 px-4 py-3 flex items-center justify-between z-30 sticky top-0 shadow-xs">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#8B6508] text-white flex items-center justify-center font-bold text-sm shadow-sm">
+          <div className="w-8 h-8 rounded-lg bg-[#B8860B] text-white flex items-center justify-center font-bold text-sm shadow-xs">
             <FaCrown />
           </div>
-          <span className="font-serif font-bold text-sm text-stone-900">
+          <span className="font-bold text-sm text-stone-900">
             {info?.name || 'Grand Mahal'} Admin
           </span>
         </div>
 
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 rounded-xl bg-stone-100 border border-stone-200 text-stone-700 cursor-pointer"
+          className="p-2 rounded-lg bg-stone-100 border border-stone-200 text-stone-700 cursor-pointer"
         >
           {sidebarOpen ? <FaTimes /> : <FaBars />}
         </button>
       </header>
 
-      {/* Sidebar Navigation */}
+      {/* Sidebar Navigation - Clean Zoho enterprise style */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 h-screen w-72 bg-white border-r border-stone-200 flex flex-col justify-between p-6 z-40 transition-transform duration-300 shadow-md ${
+        className={`fixed lg:sticky top-0 left-0 h-screen w-64 bg-white border-r border-stone-200 flex flex-col justify-between p-4 z-40 transition-transform duration-200 shadow-xs ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         {/* Brand Header */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-3 border-b border-stone-100 pb-5">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#D4AF37] via-[#B8860B] to-[#8B6508] text-white flex items-center justify-center text-xl font-bold shadow-[0_4px_15px_rgba(184,134,11,0.3)]">
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 px-2 py-3 border-b border-stone-100">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#B8860B] text-white flex items-center justify-center text-base font-bold shadow-xs">
               <FaCrown />
             </div>
             <div className="text-left">
-              <span className="font-serif font-bold text-base text-stone-900 block leading-tight">
+              <span className="font-serif font-extrabold text-sm text-stone-900 block leading-tight">
                 {(info?.name || 'Grand Mahal').toUpperCase()}
               </span>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8B6508] font-bold">
-                Admin Control Portal
+              <span className="text-[10px] uppercase tracking-wider text-[#8B6508] font-bold">
+                Admin Portal
               </span>
             </div>
           </div>
@@ -88,19 +88,19 @@ const AdminLayout = () => {
                   to={item.path}
                   end={item.end}
                   onClick={() => setSidebarOpen(false)}
-                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                  className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-semibold transition-all ${
                     isActive
-                      ? 'bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white shadow-md'
-                      : 'text-stone-600 hover:text-stone-900 hover:bg-amber-50/60'
+                      ? 'bg-[#B8860B] text-white shadow-xs'
+                      : 'text-stone-700 hover:text-stone-900 hover:bg-stone-100'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <Icon className={`text-sm ${isActive ? 'text-white' : 'text-[#8B6508]'}`} />
+                  <div className="flex items-center gap-2.5">
+                    <Icon className={`text-sm ${isActive ? 'text-white' : 'text-stone-500'}`} />
                     <span>{item.name}</span>
                   </div>
 
                   {item.name.includes('Bookings') && pendingCount > 0 && (
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-rose-500 text-white shadow-xs">
+                    <span className="px-1.5 py-0.5 rounded-md text-[10px] font-mono font-bold bg-rose-500 text-white shadow-2xs">
                       {pendingCount}
                     </span>
                   )}
@@ -111,28 +111,28 @@ const AdminLayout = () => {
         </div>
 
         {/* Bottom Actions */}
-        <div className="space-y-3 pt-6 border-t border-stone-100">
+        <div className="space-y-2 pt-4 border-t border-stone-100">
           <NavLink
             to="/"
             target="_blank"
-            className="flex items-center justify-between w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-stone-700 hover:text-[#8B6508] hover:border-[#B8860B] text-xs font-bold transition-colors"
+            className="flex items-center justify-between w-full px-3 py-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-700 hover:text-[#8B6508] hover:border-[#B8860B] text-xs font-medium transition-colors"
           >
             <span className="flex items-center gap-2">
-              <FaExternalLinkAlt className="text-xs" /> View Live Website
+              <FaExternalLinkAlt className="text-xs text-stone-400" /> View Website
             </span>
           </NavLink>
 
           <button
             onClick={handleLogout}
-            className="flex items-center justify-center gap-2 w-full px-3.5 py-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 hover:bg-rose-600 hover:text-white text-xs font-bold transition-all cursor-pointer"
+            className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 hover:bg-rose-600 hover:text-white text-xs font-semibold transition-all cursor-pointer"
           >
-            <FaSignOutAlt /> Sign Out Admin
+            <FaSignOutAlt className="text-xs" /> Sign Out
           </button>
         </div>
       </aside>
 
       {/* Main Admin Content View */}
-      <main className="flex-1 min-w-0 p-4 sm:p-8 lg:p-10 max-w-7xl mx-auto overflow-y-auto">
+      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto overflow-y-auto">
         <Outlet />
       </main>
     </div>
