@@ -11,16 +11,15 @@ import {
 } from '../data/mahalData';
 
 const STORAGE_KEYS = {
-  INFO: 'mahal_info_v1',
-  FACILITIES: 'mahal_facilities_v1',
-  EVENTS: 'mahal_events_v1',
-  GALLERY: 'mahal_gallery_v1',
-  VIDEOS: 'mahal_videos_v1',
-  PACKAGES: 'mahal_packages_v1',
-  TESTIMONIALS: 'mahal_testimonials_v1',
-  FAQS: 'mahal_faqs_v1',
-  BOOKINGS: 'mahal_bookings_v1',
-  ADMIN_AUTH: 'mahal_admin_auth_v1'
+  INFO: 'mahal_info_v2',
+  FACILITIES: 'mahal_facilities_v2',
+  EVENTS: 'mahal_events_v2',
+  GALLERY: 'mahal_gallery_v2',
+  VIDEOS: 'mahal_videos_v2',
+  PACKAGES: 'mahal_packages_v2',
+  TESTIMONIALS: 'mahal_testimonials_v2',
+  FAQS: 'mahal_faqs_v2',
+  BOOKINGS: 'mahal_bookings_v2'
 };
 
 // Event listener for cross-component reactivity
@@ -47,7 +46,14 @@ const getStorageItem = (key, fallback) => {
       localStorage.setItem(key, JSON.stringify(fallback));
       return fallback;
     }
-    return JSON.parse(item);
+    const parsed = JSON.parse(item);
+    if (Array.isArray(fallback)) {
+      return Array.isArray(parsed) && parsed.length > 0 ? parsed : fallback;
+    }
+    if (typeof fallback === 'object' && fallback !== null) {
+      return { ...fallback, ...parsed };
+    }
+    return parsed;
   } catch (err) {
     console.warn(`Error reading ${key} from storage:`, err);
     return fallback;
@@ -236,9 +242,9 @@ export const dataService = {
       b => b.eventDate === targetDate && b.status !== 'Cancelled'
     );
 
-    const hasFullDay = activeBookings.some(b => b.timeSlot.includes('24') || b.timeSlot.includes('Full'));
-    const hasMorning = activeBookings.some(b => b.timeSlot.includes('Morning') || b.timeSlot.includes('Full'));
-    const hasEvening = activeBookings.some(b => b.timeSlot.includes('Evening') || b.timeSlot.includes('Full'));
+    const hasFullDay = activeBookings.some(b => b.timeSlot?.includes('24') || b.timeSlot?.includes('Full'));
+    const hasMorning = activeBookings.some(b => b.timeSlot?.includes('Morning') || b.timeSlot?.includes('Full'));
+    const hasEvening = activeBookings.some(b => b.timeSlot?.includes('Evening') || b.timeSlot?.includes('Full'));
 
     return {
       date: targetDate,

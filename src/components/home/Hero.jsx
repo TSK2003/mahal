@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaCalendarCheck, FaPhoneAlt, FaCrown, FaCheckCircle } from 'react-icons/fa';
 import useMahalData from '../../hooks/useMahalData';
 import Button from '../common/Button';
@@ -6,6 +7,10 @@ import heroVideo from '../../assets/WhatsApp Video 2026-08-04 at 15.43.25.mp4';
 
 const Hero = ({ onOpenEnquiry }) => {
   const { info } = useMahalData();
+  const rawName = info?.name || 'Murugu Wedding Mahal';
+  const nameParts = rawName.split(' ');
+  const firstName = nameParts[0] || 'MURUGU';
+  const restName = nameParts.slice(1).join(' ') || 'MAHAL';
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden py-24 sm:py-32">
@@ -51,7 +56,7 @@ const Hero = ({ onOpenEnquiry }) => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="text-4xl sm:text-6xl md:text-7xl font-extrabold font-serif tracking-tight text-stone-100 mb-4 leading-[1.1] drop-shadow-2xl"
         >
-          {info.name.split(' ')[0]} <span className="text-gold-gradient">{info.name.split(' ').slice(1).join(' ')}</span>
+          {firstName} <span className="text-gold-gradient">{restName}</span>
         </motion.h1>
 
         {/* Tagline */}
@@ -61,7 +66,7 @@ const Hero = ({ onOpenEnquiry }) => {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="text-lg sm:text-2xl font-serif italic text-[#E5C158] mb-5 drop-shadow-md"
         >
-          "{info.tagline}"
+          "{info?.tagline || 'Where Royal Traditions Meet Timeless Luxury'}"
         </motion.p>
 
         {/* Short Description */}
@@ -71,7 +76,7 @@ const Hero = ({ onOpenEnquiry }) => {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="max-w-2xl mx-auto text-xs sm:text-base text-stone-200 mb-8 leading-relaxed drop-shadow"
         >
-          {info.shortDesc}
+          {info?.shortDesc || 'South India premier luxury wedding destination.'}
         </motion.p>
 
         {/* Features Chips */}
@@ -111,13 +116,13 @@ const Hero = ({ onOpenEnquiry }) => {
             Enquire Dates
           </Button>
 
-          <a href={`tel:${info.phone}`}>
+          <a href={`tel:${info?.phone || '+919876543210'}`}>
             <Button
               variant="secondary"
               icon={FaPhoneAlt}
               className="text-sm px-8 py-4 font-semibold backdrop-blur-md"
             >
-              Call Desk: {info.phone}
+              Call Desk: {info?.phone || '+91 98765 43210'}
             </Button>
           </a>
         </motion.div>

@@ -50,7 +50,7 @@ const PricingCard = ({ pkg, onEnquire }) => {
         {/* Included Features */}
         <div className="space-y-3 mb-8 text-left">
           <p className="text-xs font-semibold text-stone-300 uppercase tracking-wider">Included Amenities:</p>
-          {pkg.features.map((feat, idx) => (
+          {(pkg.features || []).map((feat, idx) => (
             <div key={idx} className="flex items-start gap-2.5 text-xs text-stone-300">
               <FaCheckCircle className="text-[#C9A227] text-sm flex-shrink-0 mt-0.5" />
               <span>{feat}</span>

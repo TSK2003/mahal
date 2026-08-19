@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  FaCrown, FaBars, FaTimes, FaPhoneAlt, 
-  FaCalendarCheck, FaUserShield, FaSearch 
+  FaCrown, FaBars, FaTimes, 
+  FaCalendarCheck, FaUserShield 
 } from 'react-icons/fa';
 import useMahalData from '../../hooks/useMahalData';
 import Button from '../common/Button';
@@ -23,62 +23,43 @@ const NAV_ITEMS = [
 const Navbar = ({ onOpenEnquiry }) => {
   const { info, isAdmin } = useMahalData();
   const location = useLocation();
-  const navigate = useNavigate();
-  const isHomePage = location.pathname === '/';
-
-  const [visible, setVisible] = useState(!isHomePage);
-  const [isScrolled, setIsScrolled] = useState(!isHomePage);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAdminLoginModalOpen, setIsAdminLoginModalOpen] = useState(false);
 
   useEffect(() => {
-    if (!isHomePage) {
-      setVisible(true);
-      setIsScrolled(true);
-      return;
-    }
-
     const handleScroll = () => {
-      if (window.scrollY > 80) {
-        setVisible(true);
-        setIsScrolled(true);
-      } else {
-        setVisible(false);
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
-
     handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHomePage, location.pathname]);
+  }, []);
 
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location]);
 
+  const rawName = info?.name || 'Murugu Wedding Mahal';
+
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ease-in-out transform ${
-          visible
-            ? 'translate-y-0 opacity-100 pointer-events-auto'
-            : '-translate-y-full opacity-0 pointer-events-none'
-        } ${
+        className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
           isScrolled
             ? 'glass-nav py-3 shadow-[0_4px_30px_rgba(0,0,0,0.8)]'
-            : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent py-5'
+            : 'bg-stone-950/80 backdrop-blur-md border-b border-stone-800/80 py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo - Left */}
           <NavLink to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#DFBA51] via-[#C9A227] to-[#997A15] flex items-center justify-center text-stone-950 text-xl font-bold shadow-[0_0_15px_rgba(201,162,39,0.5)] group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#DFBA51] via-[#C9A227] to-[#997A15] flex items-center justify-center text-stone-950 text-xl font-bold shadow-[0_0_15px_rgba(201,162,39,0.5)] group-hover:scale-105 transition-transform flex-shrink-0">
               <FaCrown />
             </div>
             <div className="flex flex-col text-left">
-              <span className="font-serif text-lg sm:text-xl font-extrabold tracking-wide text-stone-100 group-hover:text-[#C9A227] transition-colors leading-none">
-                {info.name.toUpperCase()}
+              <span className="font-serif text-base sm:text-lg font-extrabold tracking-wide text-stone-100 group-hover:text-[#C9A227] transition-colors leading-none">
+                {rawName.toUpperCase()}
               </span>
               <span className="text-[9px] uppercase tracking-[0.22em] text-[#C9A227] font-semibold mt-1">
                 Luxury Wedding & Convention
@@ -235,13 +216,6 @@ const Navbar = ({ onOpenEnquiry }) => {
                   >
                     <FaCalendarCheck /> Enquire Dates
                   </Button>
-
-                  <a
-                    href={`tel:${info.phone}`}
-                    className="flex items-center justify-center gap-2 py-2 text-xs font-semibold text-[#C9A227]"
-                  >
-                    <FaPhoneAlt /> Call Us: {info.phone}
-                  </a>
                 </div>
               </div>
             </motion.div>
