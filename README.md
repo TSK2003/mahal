@@ -125,6 +125,30 @@ firebase deploy --only hosting
 
 ---
 
+## 🤖 Automated CI/CD GitHub Actions Setup
+
+This repository is equipped with GitHub Actions workflows in `.github/workflows/` for automated build and deployment:
+
+### Required GitHub Repository Secrets
+Go to your GitHub Repository -> **Settings** -> **Secrets and variables** -> **Actions** and add:
+- `FIREBASE_TOKEN`: Your Firebase CI token generated from `firebase login:ci`
+- OR `FIREBASE_SERVICE_ACCOUNT_MAHAL_A8800`: Your Google Cloud / Firebase service account key JSON.
+
+Whenever you push to the `main` branch:
+1. GitHub Actions checks out the code
+2. Installs dependencies (`npm ci`)
+3. Builds the production bundle (`npm run build`)
+4. Automatically deploys to Firebase Hosting live at **https://mahal-a8800.web.app**
+
+```bash
+# Commit & Push your CI/CD workflows to GitHub:
+git add .
+git commit -m "feat: add Firebase CI/CD GitHub Actions workflows"
+git push origin main
+```
+
+---
+
 ## 📁 Project Directory Architecture
 
 ```
